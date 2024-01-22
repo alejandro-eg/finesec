@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>FINESEC | Pictogramas</title>
+	<title>FINESEC | Blank Page</title>
 
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+		href="/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" th:href="@{themes_AdminLTE/plugins/fontawesome-free/css/all.min.css}">
 	<!-- Theme style -->
@@ -167,7 +167,7 @@
 			<a href="../../index3.html" class="brand-link">
 				<img th:src="@{themes_AdminLTE/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo"
 					class="brand-image img-circle elevation-3" style="opacity: .8">
-				<span class="brand-text font-weight-light">FINESEC</span>
+				<span class="brand-text font-weight-light">AdminLTE 3</span>
 			</a>
 
 			<!-- Sidebar -->
@@ -242,9 +242,9 @@
 						</li>
 						<li class="nav-item">
 							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-copy"></i>
+								<i class="nav-icon fas fa-user"></i>
 								<p>
-									Layout Options
+									Usuarios
 									<i class="fas fa-angle-left right"></i>
 									<span class="badge badge-info right">6</span>
 								</p>
@@ -253,87 +253,46 @@
 								<li class="nav-item">
 									<a href="../layout/top-nav.html" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Top Navigation</p>
+										<p th:href="@{/nuevou}">Nuevo Usuario</p>
 									</a>
 								</li>
 								<li class="nav-item">
 									<a href="../layout/top-nav-sidebar.html" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Top Navigation + Sidebar</p>
+										<p th:href="@{/usuarios}">Lista de Usuarios</p>
 									</a>
 								</li>
-								<li class="nav-item">
-									<a href="../layout/boxed.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Boxed</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="../layout/fixed-sidebar.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Fixed Sidebar</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="../layout/fixed-sidebar-custom.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Fixed Sidebar <small>+ Custom Area</small></p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="../layout/fixed-topnav.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Fixed Navbar</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="../layout/fixed-footer.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Fixed Footer</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="../layout/collapsed-sidebar.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Collapsed Sidebar</p>
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-chart-pie"></i>
-								<p>
-									Charts
-									<i class="right fas fa-angle-left"></i>
+
+								Charts
+								<i class="right fas fa-angle-left"></i>
 								</p>
-							</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item">
-									<a href="../charts/chartjs.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>ChartJS</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="../charts/flot.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Flot</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="../charts/inline.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Inline</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="../charts/uplot.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>uPlot</p>
-									</a>
-								</li>
-							</ul>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="../charts/chartjs.html" class="nav-link">
+											<i class="far fa-circle nav-icon"></i>
+											<p>ChartJS</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="../charts/flot.html" class="nav-link">
+											<i class="far fa-circle nav-icon"></i>
+											<p>Flot</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="../charts/inline.html" class="nav-link">
+											<i class="far fa-circle nav-icon"></i>
+											<p>Inline</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="../charts/uplot.html" class="nav-link">
+											<i class="far fa-circle nav-icon"></i>
+											<p>uPlot</p>
+										</a>
+									</li>
+								</ul>
 						</li>
 						<li class="nav-item">
 							<a href="#" class="nav-link">
@@ -847,7 +806,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Filosofía Institucional</h1>
+							<h1>Blank Page</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -859,40 +818,11 @@
 				</div><!-- /.container-fluid -->
 			</section>
 
-			<section class="seccion_mision">
-				<div class="contenedor-valores">
-					<h2 style="text-align: center;">Misión</h2>
-					<p>La Fundación FINESEC es una entidad sin ánimo de lucro, cuya misión es
-						proporcionar los apoyos necesarios para que las personas con discapacidad intelectual y sus
-						familias, disfruten de calidad de vida en
-						condiciones de igualdad de oportunidades con el resto de la ciudadanía.</p>
-					<h2 style="text-align: center;">Visión</h2>
-					<p>Somos una organización innovadora que mejora día a día y genera confianza
-						en las personas con discapacidad con necesidades de apoyo intensas y generalizadas,
-						en sus familias, en los profesionales y en la sociedad.</p>
-					<h2 style="text-align: center;">Principios y Valores</h2>
-					<p>. RESALTAR la dignidad humana y sus valores positivos sobre sus limitaciones, más allá de toda
-						circunstancia <br>
-						. RESPETAR Y HACER RESPETAR LOS DERECHOS Y OBLIGACIONES ENUNCIADOS en la declaración de los
-						derechos de las personas con discapacidad, dentro del marco de la defensa de los derechos
-						humanos.<br>
-						. PROMOVER la formación integral de la persona con discapacidad través del desarrollo de todas sus
-						habilidades adaptativas funcionales.<br>
-						. PROPICIAR la participación de la familia, quien compartirá el compromiso de las acciones
-						propuestas en el plan de intervención de cada usuario <br>
-						. PROMOVER y sostener estrategias de participación de personas con discapacidad en todos los
-						ambientes sociales. <br>
-						. TRABAJAR para afianzar creencias, valores y principios que alienten a las mismas personas con
-						discapacidad a vivir en equidad.</p>
-					<!-- Agrega más contenido según sea necesario -->
-				</div>
-			</section>
-
 			<!-- Main content -->
-			<!--section class="content"-->
+			<section class="content">
 
-			<!-- Default box -->
-			<!--div class="card">
+				<!-- Default box -->
+				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Title</h3>
 
@@ -908,15 +838,15 @@
 					<div class="card-body">
 						Start creating your amazing application!
 					</div>
-					</.card-body>
+					<!-- /.card-body -->
 					<div class="card-footer">
 						Footer
 					</div>
 					<!-- /.card-footer-->
-			<!--/div-->
-			<!--/.card-->
+				</div>
+				<!-- /.card -->
 
-			<!--/section-->
+			</section>
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
