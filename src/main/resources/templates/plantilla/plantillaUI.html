@@ -232,6 +232,29 @@
 							</ul>
 						</li>
 						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-users"></i>
+								<p>
+									Roles
+									<i class="right fas fa-angle-left"></i>
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a th:href="@{/nuevorol}" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Nuevo Rol</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a th:href="roles"  class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Lista de Roles</p>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
 							<a href="../widgets.html" class="nav-link">
 								<i class="nav-icon fas fa-th"></i>
 								<p>
@@ -251,15 +274,15 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="../layout/top-nav.html" class="nav-link">
+									<a th:href="@{/nuevou}" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p th:href="@{/nuevou}">Nuevo Usuario</p>
+										<p >Nuevo Usuario</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="../layout/top-nav-sidebar.html" class="nav-link">
+									<a th:href="@{/usuarios}" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p th:href="@{/usuarios}">Lista de Usuarios</p>
+										<p>Lista de Usuarios</p>
 									</a>
 								</li>
 
@@ -800,55 +823,16 @@
 		</aside>
 
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>Blank Page</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active">Blank Page</li>
-							</ol>
-						</div>
-					</div>
-				</div><!-- /.container-fluid -->
-			</section>
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    
+      <div class="container-fluid">
+        
+          <div layout:fragment="cargarpagina">
+      </div>
 
-			<!-- Main content -->
-			<section class="content">
-
-				<!-- Default box -->
-				<div class="card">
-					<div class="card-header">
-						<h3 class="card-title">Title</h3>
-
-						<div class="card-tools">
-							<button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-								<i class="fas fa-minus"></i>
-							</button>
-							<button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-								<i class="fas fa-times"></i>
-							</button>
-						</div>
-					</div>
-					<div class="card-body">
-						Start creating your amazing application!
-					</div>
-					<!-- /.card-body -->
-					<div class="card-footer">
-						Footer
-					</div>
-					<!-- /.card-footer-->
-				</div>
-				<!-- /.card -->
-
-			</section>
-			<!-- /.content -->
-		</div>
+    <!-- /.content -->
+  </div>
 		<!-- /.content-wrapper -->
 
 		<footer class="main-footer">
@@ -875,6 +859,28 @@
 	<script th:src="@{themes_AdminLTE/dist/js/adminlte.min.js}"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script th:src="@{themes_AdminLTE/dist/js/demo.js}"></script>
+	<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../../plugins/jszip/jszip.min.js"></script>
+<script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- Page specific script -->
 </body>
 
 </html>
