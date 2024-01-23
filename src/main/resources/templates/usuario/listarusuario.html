@@ -1,41 +1,75 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{/plantilla/plantillaUI}"
-	  >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/plantilla/plantillaUI}">
+
 <head>
-<meta charset="UTF-8">
-<title>Lista de Usuarios</title>
+	<meta charset="UTF-8">
+	<title>Lista de Usuarios</title>
 </head>
+
 <body>
 	<div layout:fragment="cargarpagina">
-	<div class="card shadow mb-4">
-          <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Lista Usuarios</h6>
-          </div>
-          
-          <div class="card-body">
-               <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                         <thead>
-                              <tr>
-                                   <th>Nombre</th>
-                                   <th>Apellido</th>
-                                   <th>Dirección</th>
-                                   <th>Email</th>
-                                   <th>Telefono</th>
-                                   <th>CI</th>
-                                   <th>Especialidad</th>
-                              </tr>
-                              
-                         </thead>
-                         
-                    </table>
-               </div>
-          </div>
-          
-          
-        </div>
+		<div class="card">
+			<div class="card-header">
+				<h6 class="card-title">Lista de Usuarios</h6>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body">
+				<table id="example1" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Apellido</th>
+							<th>Dirección</th>
+							<th>Telefono</th>
+							<th>CI</th>
+							<th>Rol</th>
+							<th>Email</th>
+							<th>Contraseña</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody>
+						<tr th:each="usu: ${ListaU}">
+							<td th:text="${usu.nombres}"></td>
+							<td th:text="${usu.apellidos}"></td>
+							<td th:text="${usu.direccion}"></td>
+							<td th:text="${usu.telefono}"></td>
+							<td th:text="${usu.ci}"></td>
+							<td th:text="${usu.rol.nombre}"></td>
+							<td th:text="${usu.email}"></td>
+							<td th:text="${usu.password}"></td>
+							<td>
+								<a class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+								<a class="btn btn-outline-danger"
+									onclick="return confirm('Seguro que desea eliminar el registro?')"><i
+										class="fa fa-trash"></i></a>
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</div>
+	<!-- /.col -->
+	</div>
+	<!-- /.row -->
+	</div>
+	<!-- /.content-wrapper -->
+
+
+
+
+	<!-- /.control-sidebar -->
+	</div>
+	<!-- ./wrapper -->
 	</div>
 </body>
+
 </html>

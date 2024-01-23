@@ -41,7 +41,7 @@ public class Usuarios implements Serializable {
 	private boolean estadoRegistro;//estado_registro
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "idRol")
+	@JoinColumn(name = "id_rol")
 	private Roles rol;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy ="usuarios")
