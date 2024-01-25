@@ -9,4 +9,5 @@ public interface IUsuarioService {
 	public void insertarUsuario(Usuarios nuevo);
 	public List<Usuarios> ListarUsuario();
 	public Usuarios buscarCI(String ci);
+	public Usuarios findByIdUsuario(int idUsuario);
 }

@@ -1,31 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{/plantilla/plantillaUI}"
-	  >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/plantilla/plantillaUI}">
+
 <head>
-<meta charset="UTF-8">
-<title>Nuevo Rol</title>
+	<meta charset="UTF-8">
+	<title>Nuevo Rol</title>
 </head>
+
 <body>
 	<div layout:fragment="cargarpagina">
-	<h2 class="h3 mb-4 text-gray-800">Nuevo Rol</h2>
-	<form>
-  
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Descripcion Rol</label>
-    <input type="text" class="form-control" id="descRol">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Nombre Rol</label>
-    <input type="text" class="form-control" id="nombreRol">
-  </div>
-  
-  <button type="submit" class="btn btn-primary">Registrar</button>
-</form>
-	
+		<h2 class="h3 mb-4 text-gray-800">Nuevo Rol</h2>
+		<form th:action="@{/guardarrol}" th:object="${nuevo}" method="post">
+			
+			<div class="mb-3">
+				<label for="exampleInputPassword1" class="form-label">Nombre Rol</label>
+				<input type="text" th:field="*{nombre}" class="form-control" id="nombreRol">
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputPassword1" class="form-label">Descripcion Rol</label>
+				<input type="text" th:field="*{descripcion}" class="form-control" id="descRol">
+			</div>
+
+			<input type="hidden" th:field="*{idRol}">
+
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</form>
+
 	</div>
-	
-	
+
+
 </body>
+
 </html>

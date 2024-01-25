@@ -35,5 +35,10 @@ public class UsuarioServiceImpl  implements IUsuarioService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Usuarios findByIdUsuario(int idUsuario) {
+		return repo.findByIdUsuario(idUsuario);
+	}
 	
 }

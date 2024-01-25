@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.finesec.pictogramas.model.Roles;
+import com.finesec.pictogramas.model.Usuarios;
 import com.finesec.pictogramas.repository.IRolesRepository;
 import com.finesec.pictogramas.service.IRolService;
 @Service
@@ -32,6 +33,11 @@ public class RolServiceImpl implements IRolService{
 	public Roles buscar(String nombre) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Roles findByIdRol(int idRol) {
+		return repo.findByIdRol(idRol);
 	}
 
 }

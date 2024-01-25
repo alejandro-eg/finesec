@@ -10,8 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import com.finesec.pictogramas.model.CategoriaPictograma;
 import com.finesec.pictogramas.model.Roles;
 import com.finesec.pictogramas.model.Usuarios;
+import com.finesec.pictogramas.service.ICategoriaPictogramaService;
 import com.finesec.pictogramas.service.IRolService;
 import com.finesec.pictogramas.service.IUsuarioService;
 
@@ -29,6 +31,10 @@ class FinesecApplicationTests {
 	
 	@Autowired
 	private IUsuarioService servicioUsr;
+	
+	@Autowired
+	private ICategoriaPictogramaService serviciocatp;
+	
 
 	@Test
 	void contextLoads() {
@@ -54,6 +60,11 @@ class FinesecApplicationTests {
 		nuevoUsr.setTelefono("0990803129");	
 		
 		servicioUsr.insertarUsuario(nuevoUsr);
+		
+		CategoriaPictograma nuevacatp = new CategoriaPictograma();
+		nuevacatp.setNombre("Deportes");
+		nuevacatp.setDescripcion("Pictograma de deportes");
+		serviciocatp.insertarCategoriaPictograma(nuevacatp);
 		
 	}
 

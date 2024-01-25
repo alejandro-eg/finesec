@@ -10,5 +10,6 @@ public interface ICategoriaPictogramaService {
 	public void insertarCategoriaPictograma(CategoriaPictograma nuevo);
 	public List<CategoriaPictograma> ListarCategoriaPigtograma();
 	public CategoriaPictograma buscar(String nombre);
+	public CategoriaPictograma findByIdCategoriaPictograma(int idCategoriaPictograma);
 
 }

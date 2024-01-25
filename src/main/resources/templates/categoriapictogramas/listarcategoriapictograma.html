@@ -1,0 +1,48 @@
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/plantilla/plantillaUI}"
+	  >
+<head>
+<meta charset="UTF-8">
+<title>Lista de Categorias Pictogramas</title>
+</head>
+<body>
+	<div layout:fragment="cargarpagina">
+
+       <div class="card-header">
+              
+              <h6 class="m-0 font-weight-bold text-primary">Lista de Categorias de Pictogramas</h6>
+       </div> 
+          
+          <div class="card-body">
+               <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                         <thead>
+                              <tr>
+								   <th>Id Categoria Pictograma</th>
+                                   <th>Nombre</th>
+                                   <th>Descripcion</th>
+                                   <th>Acciones</th>
+                              </tr>
+                              
+                         </thead>
+                         
+                         <tbody>
+                               <tr th:each="cp: ${ListaCP}">
+								    <td th:text="${cp.IdCategoriaPictograma}"></td> 
+									<td th:text="${cp.nombre}"></td> 
+									<td th:text="${cp.descripcion}"></td>
+									<td> <a th:href="@{/editarcategoriapictograma/}+ ${cp.idCategoriaPictograma}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+												 <a class="btn btn-outline-danger"onclick="return confirm('Seguro que desea elimiar el registro?"><i class="fa fa-edit"></i></a></td> 
+								</tr>
+						</tbody>
+                         
+                    </table>
+               </div>
+          </div>
+                   
+        </div>
+	
+</body>
+</html>

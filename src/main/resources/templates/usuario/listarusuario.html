@@ -26,6 +26,7 @@
 							<th>Rol</th>
 							<th>Email</th>
 							<th>Contraseña</th>
+							<th>Acciones</th>
 
 						</tr>
 
@@ -38,15 +39,15 @@
 							<td th:text="${usu.direccion}"></td>
 							<td th:text="${usu.telefono}"></td>
 							<td th:text="${usu.ci}"></td>
-							<td th:text="${usu.rol.nombre}"></td>
+							<td th:text="${usu?.rol?.nombre}"></td-->
 							<td th:text="${usu.email}"></td>
 							<td th:text="${usu.password}"></td>
-							<td>
-								<a class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
-								<a class="btn btn-outline-danger"
-									onclick="return confirm('Seguro que desea eliminar el registro?')"><i
-										class="fa fa-trash"></i></a>
-							</td>
+							
+							<td><a th:href="@{/editarusuario/}+ ${usu.idUsuario}"  
+								class="btn btn-outline-primary"><i class = "fa fa-edit"></i></a>
+									<a class="btn btn-outline-danger" 
+									onclick="return confirm('Esta seguro que desea eliminar el registro?')">
+									<i class = "fa fa-trash"></i></a></td>
 						</tr>
 					</tbody>
 

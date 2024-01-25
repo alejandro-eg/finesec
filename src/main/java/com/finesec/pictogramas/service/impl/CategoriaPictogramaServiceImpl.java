@@ -7,13 +7,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.finesec.pictogramas.model.CategoriaPictograma;
+import com.finesec.pictogramas.model.Roles;
 import com.finesec.pictogramas.repository.ICategoriaPictogramaRepository;
 import com.finesec.pictogramas.service.ICategoriaPictogramaService;
 @Service
 @Component
-public class CategoriaPictogramaService implements ICategoriaPictogramaService {
+public class CategoriaPictogramaServiceImpl implements ICategoriaPictogramaService {
 	@Autowired
 	private ICategoriaPictogramaRepository repo;
+	
 
 	@Override
 	public void insertarCategoriaPictograma(CategoriaPictograma nuevo) {
@@ -33,5 +35,12 @@ public class CategoriaPictogramaService implements ICategoriaPictogramaService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public CategoriaPictograma findByIdCategoriaPictograma(int idCategoriaPictograma) {
+		return repo.findByIdCategoriaPictograma(idCategoriaPictograma);
+	}
+	
+	
 
 }

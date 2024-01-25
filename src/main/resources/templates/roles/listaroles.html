@@ -1,47 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{/plantilla/plantillaUI}"
-	  >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/plantilla/plantillaUI}">
+
 <head>
-<meta charset="UTF-8">
-<title>Lista de Roles</title>
+	<meta charset="UTF-8">
+	<title>Lista de Roles</title>
 </head>
+
 <body>
 	<div layout:fragment="cargarpagina">
-	<div class="card shadow mb-4">
-          <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Lista Roles</h6>
-          </div>
-          
-          <div class="card-body">
-               <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                         <thead>
-                              <tr>
-                                   <th>Id Rol</th>
-                                   <th>Descripcion</th>
-                                   <th>Nombre</th>
-                              </tr>
-                              
-                         </thead>
-                          <tbody>
-                               <tr th:each="rol: ${ListaR}">
-									<td th:text="${rol.idRol}"></td> 
-									<td th:text="${rol.descripcion}"></td>
-									<td th:text="${rol.nombre}"></td>
-									<td> <a class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
-									<a class="btn btn-outline-danger"onclick="return confirm('Seguro que desea elimiar el registro?"><i class="fa fa-edit"></i></a>
-									</td> 
-								</tr>
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">Lista Roles</h6>
+			</div>
+
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>Id Rol</th>
+								<th>Nombre</th>
+								<th>Descripcion</th>
+								<th>Acciones</th>
+							</tr>
+
+						</thead>
+						<tbody>
+							<tr th:each="rol: ${ListaR}">
+								<td th:text="${rol.idRol}"></td>
+								<td th:text="${rol.nombre}"></td>
+								<td th:text="${rol.descripcion}"></td>
+								<td><a th:href="@{/editarrol/}+ ${rol.idRol}" class="btn btn-outline-primary"><i
+											class="fa fa-edit"></i></a>
+									<a class="btn btn-outline-danger"
+										onclick="return confirm('Esta seguro que desea eliminar el registro?')">
+										<i class="fa fa-trash"></i></a>
+								</td>
+								</td>
+							</tr>
 						</tbody>
-                         
-                    </table>
-               </div>
-          </div>
-          
-          
-        </div>
+
+					</table>
+				</div>
+			</div>
+
+
+		</div>
 	</div>
 </body>
+
 </html>
