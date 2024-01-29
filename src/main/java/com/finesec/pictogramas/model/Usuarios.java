@@ -33,11 +33,12 @@ public class Usuarios implements Serializable {
 	private String apellidos;
 	private String direccion;
 	private String telefono;
+	//Variables para inicio de sesión
 	@Column(name = "user_correo")//me permite cambiar de nombre el atributo 
 	private String email;
+	private String password;
 	@Column(name = "user_identificacion",length = 15)
 	private String ci;
-	private String password;
 	private boolean estadoRegistro;//estado_registro
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

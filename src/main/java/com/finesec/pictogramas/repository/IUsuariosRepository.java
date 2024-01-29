@@ -6,4 +6,7 @@ import com.finesec.pictogramas.model.Usuarios;
 
 public interface IUsuariosRepository  extends JpaRepository<Usuarios, Integer>{
 	public Usuarios findByIdUsuario(int idUsuario);
+	
+	//Método para inicio de sesión
+	public Usuarios findByEmail(String emeal);
 }

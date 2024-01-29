@@ -42,9 +42,9 @@ class FinesecApplicationTests {
 		Roles nuevoRol = new Roles(); 
 		nuevoRol.setNombre("Administrador");
 		nuevoRol.setDescripcion("Administrador BDD");
-		nuevoRol.setIdRol(1);
+		//nuevoRol.setIdRol(1);
 		
-		servicioRol.insertarRol(nuevoRol);
+		//servicioRol.insertarRol(nuevoRol);
 		
 		//Usuario
 		Usuarios nuevoUsr = new Usuarios();
@@ -53,18 +53,14 @@ class FinesecApplicationTests {
 		nuevoUsr.setDireccion("Solanda");
 		nuevoUsr.setEmail("jpziarra@mail.com");
 		nuevoUsr.setEstadoRegistro(true);
-		nuevoUsr.setIdUsuario(1);
+		//nuevoUsr.setIdUsuario(1);
 		nuevoUsr.setNombres("Jhonathan");
 		nuevoUsr.setPassword("123123");
 		nuevoUsr.setRol(nuevoRol);
 		nuevoUsr.setTelefono("0990803129");	
 		
-		servicioUsr.insertarUsuario(nuevoUsr);
+		//servicioUsr.insertarUsuario(nuevoUsr);
 		
-		CategoriaPictograma nuevacatp = new CategoriaPictograma();
-		nuevacatp.setNombre("Deportes");
-		nuevacatp.setDescripcion("Pictograma de deportes");
-		serviciocatp.insertarCategoriaPictograma(nuevacatp);
 		
 	}
 

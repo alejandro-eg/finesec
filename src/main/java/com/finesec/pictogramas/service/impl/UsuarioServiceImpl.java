@@ -40,5 +40,12 @@ public class UsuarioServiceImpl  implements IUsuarioService{
 	public Usuarios findByIdUsuario(int idUsuario) {
 		return repo.findByIdUsuario(idUsuario);
 	}
+
+	//Método para inicio de sesión
+	@Override
+	public Usuarios findByEmail(String emeal) {
+		// TODO Auto-generated method stub
+		return repo.findByEmail(emeal);
+	}
 	
 }

@@ -10,4 +10,7 @@ public interface IUsuarioService {
 	public List<Usuarios> ListarUsuario();
 	public Usuarios buscarCI(String ci);
 	public Usuarios findByIdUsuario(int idUsuario);
+	//Método para inicio de sesión
+	public Usuarios findByEmail(String emeal);
+	
 }
