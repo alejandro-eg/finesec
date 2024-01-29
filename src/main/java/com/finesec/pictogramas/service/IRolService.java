@@ -12,5 +12,7 @@ public interface IRolService {
 	public List<Roles> ListarRoles();
 	public Roles buscar(String nombre);
 	public Roles findByIdRol(int idRol);
+	
+	public void eliminarRol(int idRol);
 
 }

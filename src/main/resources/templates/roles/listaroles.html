@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{/plantilla/plantillaUI}">
 
 <head>
@@ -33,7 +34,7 @@
 								<td th:text="${rol.descripcion}"></td>
 								<td><a th:href="@{/editarrol/}+ ${rol.idRol}" class="btn btn-outline-primary"><i
 											class="fa fa-edit"></i></a>
-									<a class="btn btn-outline-danger"
+									<a th:href="@{/eliminarRol/}+ ${rol.idRol}" class="btn btn-outline-primary"
 										onclick="return confirm('Esta seguro que desea eliminar el registro?')">
 										<i class="fa fa-trash"></i></a>
 								</td>

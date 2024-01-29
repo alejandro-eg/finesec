@@ -40,4 +40,10 @@ public class RolServiceImpl implements IRolService{
 		return repo.findByIdRol(idRol);
 	}
 
+	@Override
+	public void eliminarRol(int idRol) {
+		repo.deleteById(idRol);
+		
+	}
+
 }

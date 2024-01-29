@@ -46,4 +46,9 @@ public class RolesController {
 	    return "/roles/nuevorol";
 	}
 	
+	@GetMapping("/eliminarRol/{idRol}")
+	public String eliminarRol(@PathVariable(value="idRol")int idRol) {
+		servicioRoles.eliminarRol(idRol);
+		return "redirect:/roles";
+	}
 }

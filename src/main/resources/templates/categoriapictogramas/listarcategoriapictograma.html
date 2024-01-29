@@ -9,8 +9,8 @@
 </head>
 <body>
 	<div layout:fragment="cargarpagina">
-
-       <div class="card-header">
+		<div class="card shadow mb-4">
+       <div class="card-header py-3">
               
               <h6 class="m-0 font-weight-bold text-primary">Lista de Categorias de Pictogramas</h6>
        </div> 
@@ -27,7 +27,6 @@
                               </tr>
                               
                          </thead>
-                         
                          <tbody>
                                <tr th:each="cp: ${ListaCP}">
 								    <td th:text="${cp.IdCategoriaPictograma}"></td> 
@@ -35,13 +34,14 @@
 									<td th:text="${cp.descripcion}"></td>
 									<td> <a th:href="@{/editarcategoriapictograma/}+ ${cp.idCategoriaPictograma}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
 												 <a class="btn btn-outline-danger"onclick="return confirm('Seguro que desea elimiar el registro?"><i class="fa fa-edit"></i></a></td> 
+								</td>
 								</tr>
 						</tbody>
                          
                     </table>
                </div>
           </div>
-                   
+          </div>        
         </div>
 	
 </body>
