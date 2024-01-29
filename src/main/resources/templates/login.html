@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-    <head>
-        <title>Spring Security Example </title>
-    </head>
-    <body>
-        <div th:if="${param.error}">
-            Invalid username and password.
-        </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
+<head>
+    <title>Spring Security Example</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="text-center mb-4">Iniciar Sesión</h2>
+
+        <div th:if="${param.error}" class="alert alert-danger">Email o contraseña incorrectos.</div>
+
+        <div th:if="${param.logout}" class="alert alert-info">Has finalizado sesión.</div>
+
         <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="username" />
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" class="form-control" id="password" name="password" />
+            </div>
+            <div class="text-center"> <!-- Alineación central para el botón -->
+                <button type="submit" class="btn btn-primary mt-3">Iniciar Sesión</button>
+            </div>
         </form>
-    </body>
+    </div>
+</div>
+
+</body>
 </html>
