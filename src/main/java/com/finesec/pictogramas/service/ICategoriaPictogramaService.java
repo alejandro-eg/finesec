@@ -11,5 +11,6 @@ public interface ICategoriaPictogramaService {
 	public List<CategoriaPictograma> ListarCategoriaPigtograma();
 	public CategoriaPictograma buscar(String nombre);
 	public CategoriaPictograma findByIdCategoriaPictograma(int idCategoriaPictograma);
+	public void eliminarCategoriaPictograma(int idCategoriaPictograma);
 
 }

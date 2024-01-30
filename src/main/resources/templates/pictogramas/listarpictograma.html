@@ -4,14 +4,14 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Lista de Usuarios</title>
+	<title>Lista de Pictogramas</title>
 </head>
 
 <body>
 	<div layout:fragment="cargarpagina">
 		<div class="card">
 			<div class="card-header">
-				<h6 class="card-title">Lista de Usuarios</h6>
+				<h6 class="card-title">Lista de Pictogramas</h6>
 			</div>
 			<!-- /.card-header -->
 			<div class="card-body">
@@ -19,13 +19,8 @@
 					<thead>
 						<tr>
 							<th>Nombre</th>
-							<th>Apellido</th>
-							<th>Dirección</th>
-							<th>Telefono</th>
-							<th>CI</th>
-							<th>Rol</th>
-							<th>Email</th>
-							<th>Contraseña</th>
+							<th>Descripcion</th>
+							<th>Categoria</th>
 							<th>Acciones</th>
 
 						</tr>
@@ -33,21 +28,17 @@
 					</thead>
 
 					<tbody>
-						<tr th:each="usu: ${ListaU}">
-							<td th:text="${usu.nombres}"></td>
-							<td th:text="${usu.apellidos}"></td>
-							<td th:text="${usu.direccion}"></td>
-							<td th:text="${usu.telefono}"></td>
-							<td th:text="${usu.ci}"></td>
-							<td th:text="${usu.rol.nombre}"></td-->
-							<td th:text="${usu.email}"></td>
-							<td th:text="${usu.password}"></td>
-							
-							<td><a th:href="@{/editarusuario/}+ ${usu.idUsuario}"  
-								class="btn btn-outline-primary"><i class = "fa fa-edit"></i></a>
-									<a class="btn btn-outline-danger" 
+						<tr th:each="picto: ${ListaP}">
+							<td th:text="${picto.nombre}"></td>
+							<td th:text="${picto.descripcion}"></td>
+							<td th:text="${picto?.categoriaPictograma?.nombre}"></td-->
+
+							<td><a th:href="@{/editarpictograma/}+ ${picto.idPictograma}" class="btn btn-outline-primary"><i
+										class="fa fa-edit"></i></a>
+								<a class="btn btn-outline-danger"
 									onclick="return confirm('Esta seguro que desea eliminar el registro?')">
-									<i class = "fa fa-trash"></i></a></td>
+									<i class="fa fa-trash"></i></a>
+							</td>
 						</tr>
 					</tbody>
 

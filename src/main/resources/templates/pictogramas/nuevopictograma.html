@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/plantilla/plantillaUI}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Nuevo Pictograma</title>
+</head>
+
+<body>
+	<div layout:fragment="cargarpagina">
+		<h2 class="h3 mb-4 text-gray-800">Nuevo Pictograma</h2>
+		<form th:action="@{/guardarpictograma}" th:object="${nuevo}" method="post">
+
+			<div class="mb-3">
+				<label for="exampleInputPassword1" class="form-label">Nombre Pictograma</label>
+				<input type="text" th:field="*{nombre}" class="form-control" id="nombre">
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputPassword1" class="form-label">Descripcion Pictograma</label>
+				<input type="text" th:field="*{descripcion}" class="form-control" id="descripcion">
+			</div>
+
+			<input type="hidden" th:field="*{idPictograma}">
+			
+			<div class="mb-3">
+				<label class="form-label">Categoria Pictograma</label>
+				<select class="form-select" aria-label="Default select example">
+				<option selected>Categoria Pictogramas</option>
+				<option value="1">One</option>
+				<option value="2">Two</option>
+				<option value="3">Three</option>
+			</select>
+			</div>
+
+			
+
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</form>
+
+	</div>
+
+
+</body>
+
+</html>

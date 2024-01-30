@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.finesec.pictogramas.model.CategoriaPictograma;
-import com.finesec.pictogramas.model.Roles;
 import com.finesec.pictogramas.service.ICategoriaPictogramaService;
 
 @Controller
@@ -46,5 +45,10 @@ public class CategoriaPictogramaController {
 	    return "/categoriapictogramas/nuevacategoriapictograma";
 	}
 	
+	@GetMapping("/eliminarcategoriapictograma/{idCategoriaPictograma}")
+	public String eliminarRol(@PathVariable(value="idCategoriaPictograma")int idCategoriaPictograma) {
+		servicioCategoriaPictograma.eliminarCategoriaPictograma(idCategoriaPictograma);
+		return "redirect:/categoriapictograma";
+	}
 
 }

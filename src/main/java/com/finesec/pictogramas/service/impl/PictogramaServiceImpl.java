@@ -35,4 +35,16 @@ public class PictogramaServiceImpl implements IPictogramaService{
 		return null;
 	}
 
+	@Override
+	public Pictogramas findByIdPictograma(int idPictograma) {
+		return repo.findByIdPictograma(idPictograma);
+	}
+
+	@Override
+	public void eliminarPictograma(int idPictograma) {
+		repo.deleteById(idPictograma);
+		
+	}
+
+
 }
