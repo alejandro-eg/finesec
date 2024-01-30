@@ -10,18 +10,20 @@ import com.finesec.pictogramas.model.CategoriaPictograma;
 import com.finesec.pictogramas.model.Roles;
 import com.finesec.pictogramas.repository.ICategoriaPictogramaRepository;
 import com.finesec.pictogramas.service.ICategoriaPictogramaService;
+
+import jakarta.transaction.Transactional;
+
 @Service
 @Component
 public class CategoriaPictogramaServiceImpl implements ICategoriaPictogramaService {
 	@Autowired
 	private ICategoriaPictogramaRepository repo;
-	
 
 	@Override
 	public void insertarCategoriaPictograma(CategoriaPictograma nuevo) {
 		repo.save(nuevo);
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -40,7 +42,11 @@ public class CategoriaPictogramaServiceImpl implements ICategoriaPictogramaServi
 	public CategoriaPictograma findByIdCategoriaPictograma(int idCategoriaPictograma) {
 		return repo.findByIdCategoriaPictograma(idCategoriaPictograma);
 	}
-	
-	
+
+	@Override
+	@Transactional
+	public void eliminarCategoriaPictograma(int idCategoriaPictograma) {
+		repo.deleteByIdCategoriaPictograma(idCategoriaPictograma);
+	}
 
 }

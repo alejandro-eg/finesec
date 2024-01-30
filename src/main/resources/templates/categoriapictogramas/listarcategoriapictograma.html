@@ -34,7 +34,7 @@
 									<td th:text="${cp.nombre}"></td> 
 									<td th:text="${cp.descripcion}"></td>
 									<td> <a th:href="@{/editarcategoriapictograma/}+ ${cp.idCategoriaPictograma}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
-												 <a class="btn btn-outline-danger"onclick="return confirm('Seguro que desea elimiar el registro?"><i class="fa fa-edit"></i></a></td> 
+												 <a th:href="@{/eliminarcategoriapictograma/}+ ${cp.idCategoriaPictograma}" class="btn btn-outline-danger" onclick="return confirm('Seguro que desea eliminar el registro?')"><i class="fa fa-trash"></i></a></td> 
 								</tr>
 						</tbody>
                          

@@ -46,5 +46,9 @@ public class CategoriaPictogramaController {
 	    return "/categoriapictogramas/nuevacategoriapictograma";
 	}
 	
-
+	 @GetMapping("/eliminarcategoriapictograma/{idCategoriaPictograma}")
+	    public String eliminarCategoriaPictograma(@PathVariable("idCategoriaPictograma") int idCategoriaPictograma) {
+	        servicioCategoriaPictograma.eliminarCategoriaPictograma(idCategoriaPictograma);
+	        return "redirect:/categoriapictograma";
+	    }
 }
