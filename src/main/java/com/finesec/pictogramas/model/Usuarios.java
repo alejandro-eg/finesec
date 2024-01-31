@@ -41,12 +41,12 @@ public class Usuarios implements Serializable {
 	private String ci;
 	private boolean estadoRegistro;//estado_registro
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_rol")
 	private Roles rol;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy ="usuarios")
 	private List<AsignacionPictograma> asPictogramas = new ArrayList<>();
-	
-	
+
 }
