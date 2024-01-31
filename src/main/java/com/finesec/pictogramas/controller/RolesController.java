@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.finesec.pictogramas.model.Roles;
-import com.finesec.pictogramas.model.Usuarios;
 import com.finesec.pictogramas.service.IRolService;
 
 @Controller
