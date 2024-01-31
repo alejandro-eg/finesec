@@ -22,46 +22,43 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @SpringBootTest
 class FinesecApplicationTests {
-	
+
 	@Autowired
 	private IRolService servicioRol;
-	
+
 	@Autowired
 	private IUsuarioService servicioUsr;
-	
+
 	@Autowired
 	private ICategoriaPictogramaService serviciocatp;
-	
 
 	@Test
 	void contextLoads() {
-		
-		Roles nuevoRol = new Roles(); 
+
+		Roles nuevoRol = new Roles();
 		nuevoRol.setNombre("Administrador");
 		nuevoRol.setDescripcion("Administrador BDD");
 		//nuevoRol.setIdRol(1);
-		
+
 		//servicioRol.insertarRol(nuevoRol);
-		
-		//Usuario
+
+		// Usuario
 		Usuarios nuevoUsr = new Usuarios();
 		nuevoUsr.setApellidos("Pizarra");
 		nuevoUsr.setCi("1725358525");
 		nuevoUsr.setDireccion("Solanda");
-		nuevoUsr.setEmail("jpziarra@mail.com");
+		nuevoUsr.setEmail("jpizarra@mail.com");
 		nuevoUsr.setEstadoRegistro(true);
-		//nuevoUsr.setIdUsuario(1);
 		nuevoUsr.setNombres("Jhonathan");
 		nuevoUsr.setPassword("123123");
-		nuevoUsr.setRol(nuevoRol);
-		nuevoUsr.setTelefono("0990803129");	
+		nuevoUsr.setRol(nuevoRol); // Asigna el rol existente con ID "1"
+		nuevoUsr.setTelefono("0990803129");
+
+		servicioUsr.insertarUsuario(nuevoUsr);
 		
-		//servicioUsr.insertarUsuario(nuevoUsr);
-		
-		
+
 	}
 
 }
