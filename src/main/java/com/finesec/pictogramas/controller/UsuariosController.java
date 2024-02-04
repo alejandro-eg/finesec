@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.finesec.pictogramas.model.Roles;
 import com.finesec.pictogramas.model.Usuarios;
+import com.finesec.pictogramas.service.IRolService;
 import com.finesec.pictogramas.service.IUsuarioService;
+
  
 @Controller
 public class UsuariosController {
@@ -19,6 +22,9 @@ public class UsuariosController {
 	@Autowired
 	private IUsuarioService servicioUsuarios;
 	private Usuarios nuevoUsuario;
+	
+	@Autowired
+    private IRolService servicioRol;
 	@GetMapping("/usuarios") //url
 	public String listarUsuarios(Model model) { //metodo de ejecucion al leer la url
 		List<Usuarios> datosUsuariosDB= servicioUsuarios.ListarUsuario();
@@ -29,7 +35,9 @@ public class UsuariosController {
 	@GetMapping("/nuevou") //url
 	public String insertarUsuario(Model model) {
 		nuevoUsuario = new Usuarios();
+		List<Roles> listaRoles = servicioRol.ListarRoles();
 		model.addAttribute("nuevo", nuevoUsuario);//método de ejecución al leer la url
+		model.addAttribute("listaRol", listaRoles);
 		return "/usuario/nuevousario"; //ruta fisica de la pagina web
 	}
 	
@@ -44,5 +52,10 @@ public class UsuariosController {
 	    Usuarios recuperadoDB = servicioUsuarios.findByIdUsuario(idUsuario);
 	    model.addAttribute("nuevo", recuperadoDB);
 	    return "/usuario/nuevousario";
+	}
+	@GetMapping("/eliminarusuario/{idUsuario}")
+	public String eliminarUsuario(@PathVariable(value="idUsuario")int idUsuario) {
+		servicioUsuarios.eliminarUsuario(idUsuario);
+		return "redirect:/usuarios";
 	}
 }

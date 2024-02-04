@@ -10,9 +10,9 @@
 <body>
 	<div layout:fragment="cargarpagina">
 
-		<div class="card-header">
-
-			<h6 class="m-0 font-weight-bold text-primary">Lista de Categorias de Pictogramas</h6>
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+			<h6 class="m-0 font-weight-bold text-primary">Lista Categoria Pictogramas</h6>
 		</div>
 
 		<div class="card-body">
@@ -35,7 +35,8 @@
 							<td th:text="${cp.descripcion}"></td>
 							<td> <a th:href="@{/editarcategoriapictograma/}+ ${cp.idCategoriaPictograma}"
 									class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
-								<a th:href="@{/eliminarcategoriapictograma/}+ ${cp.idCategoriaPictograma}" class="btn btn-outline-primary"
+								<a th:href="@{/eliminarcategoriapictograma/}+ ${cp.idCategoriaPictograma}"
+									class="btn btn-outline-danger"
 									onclick="return confirm('Esta seguro que desea eliminar el registro?')">
 									<i class="fa fa-trash"></i>
 								</a>
@@ -45,6 +46,7 @@
 
 				</table>
 			</div>
+		</div>
 		</div>
 
 	</div>

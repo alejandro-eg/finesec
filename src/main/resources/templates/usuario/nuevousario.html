@@ -9,57 +9,61 @@
 
 <body>
 	<div layout:fragment="cargarpagina">
-		<h2 class="h3 mb-4 text-gray-800">Nuevo Usuario</h2>
-		<form th:action="@{/guardarusuario}" th:object="${nuevo}" method="post">
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">Nuevo Usuario</h6>
+			</div>
+			<form th:action="@{/guardarusuario}" th:object="${nuevo}" method="post">
 
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Nombres</label>
-				<input type="text" th:field="*{nombres}" class="form-control" id="exampleInputPassword1">
-			</div>
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Apellidos</label>
-				<input type="text" th:field="*{apellidos}" class="form-control" id="exampleInputPassword1">
-			</div>
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Dirección</label>
-				<input type="text" th:field="*{direccion}" class="form-control" id="exampleInputPassword1">
-			</div>
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Telefono</label>
-				<input type="text" th:field="*{telefono}" class="form-control" id="exampleInputPassword1">
-			</div>
-			<div class="mb-3">
-				<label for="exampleInputEmail1" class="form-label">Email</label>
-				<input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1"
-					aria-describedby="emailHelp">
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Nombres</label>
+					<input type="text" th:field="*{nombres}" class="form-control" id="exampleInputPassword1">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Apellidos</label>
+					<input type="text" th:field="*{apellidos}" class="form-control" id="exampleInputPassword1">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Dirección</label>
+					<input type="text" th:field="*{direccion}" class="form-control" id="exampleInputPassword1">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Telefono</label>
+					<input type="text" th:field="*{telefono}" class="form-control" id="exampleInputPassword1">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Email</label>
+					<input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1"
+						aria-describedby="emailHelp">
 
-			</div>
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Cedula</label>
-				<input type="text" th:field="*{ci}" class="form-control" id="exampleInputPassword1">
-			</div>
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Cedula</label>
+					<input type="text" th:field="*{ci}" class="form-control" id="exampleInputPassword1">
+				</div>
 
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Password</label>
-				<input type="text" th:field="*{password}" class="form-control" id="exampleInputPassword1">
-			</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Password</label>
+					<input type="text" th:field="*{password}" class="form-control" id="exampleInputPassword1">
+				</div>
 
-			<input type="hidden" th:field="*{idUsuario}">
+				<input type="hidden" th:field="*{idUsuario}">
 
-			<select class="form-select" aria-label="Default select example">
-				<option selected>Roles</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-			</select>
+				<select class="form-select" aria-label="Default select example" th:field="*{rol}">
+					<option value="" selected>Rol</option>
+					<option th:each="rol: ${listaRol}" th:value="${rol.idRol}"
+						th:text="${rol.nombre}"></option>
+				</select>
 
 
-			<div class="mb-3 form-check">
-				<input type="checkbox" class="form-check-input" id="exampleCheck1">
-				<label class="form-check-label" for="exampleCheck1">Estado</label>
-			</div>
-			<button type="submit" class="btn btn-primary">Guardar</button>
-		</form>
+				<div class="mb-3 form-check">
+					<input type="checkbox" class="form-check-input" id="exampleCheck1">
+					<label class="form-check-label" for="exampleCheck1">Estado</label>
+				</div>
+				<button type="submit" class="btn btn-primary">Guardar</button>
+			</form>
+		</div>
+
 
 	</div>
 

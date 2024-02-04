@@ -47,5 +47,11 @@ public class UsuarioServiceImpl  implements IUsuarioService{
 		// TODO Auto-generated method stub
 		return repo.findByEmail(emeal);
 	}
+
+	@Override
+	public void eliminarUsuario(int idUsuario) {
+		// TODO Auto-generated method stub
+		repo.deleteById(idUsuario);
+	}
 	
 }

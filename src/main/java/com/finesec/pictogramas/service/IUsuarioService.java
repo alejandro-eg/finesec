@@ -12,5 +12,6 @@ public interface IUsuarioService {
 	public Usuarios findByIdUsuario(int idUsuario);
 	//Método para inicio de sesión
 	public Usuarios findByEmail(String emeal);
+	public void eliminarUsuario(int idUsuario);
 	
 }

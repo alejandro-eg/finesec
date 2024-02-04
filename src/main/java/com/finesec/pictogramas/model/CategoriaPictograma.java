@@ -23,6 +23,6 @@ public class CategoriaPictograma implements Serializable {
 	private String nombre;
 	private String descripcion;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy ="categoriaPictograma")
-	private List<Pictogramas> usuarios = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy ="fkCategoriaPictograma")
+	private List<Pictogramas> pictograma = new ArrayList<>();
 }

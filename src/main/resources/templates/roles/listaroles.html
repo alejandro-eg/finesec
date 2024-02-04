@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{/plantilla/plantillaUI}">
 
 <head>
-<meta charset="UTF-8">
-<title>Lista de Roles</title>
+	<meta charset="UTF-8">
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/plugins/fontawesome-free/css/all.min.css}">
+	<!-- Theme style -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/dist/css/adminlte.css}">
 </head>
 
 <body>
@@ -17,8 +22,7 @@
 
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
 								<th>Id Rol</th>
@@ -26,29 +30,25 @@
 								<th>Descripcion</th>
 								<th>Acciones</th>
 							</tr>
-
 						</thead>
 						<tbody>
 							<tr th:each="rol: ${ListaR}">
 								<td th:text="${rol.idRol}"></td>
 								<td th:text="${rol.nombre}"></td>
 								<td th:text="${rol.descripcion}"></td>
-								<td><a th:href="@{/editarrol/}+ ${rol.idRol}"
-									class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
-									<a th:href="@{/eliminarRol/}+ ${rol.idRol}"
-									class="btn btn-outline-primary"
-									onclick="return confirm('Esta seguro que desea eliminar el registro?')">
+								<td>
+									<a th:href="@{/editarrol/}+ ${rol.idRol}" class="btn btn-outline-primary"><i
+											class="fa fa-edit"></i></a>
+									<a th:href="@{/eliminarRol/}+ ${rol.idRol}" class="btn btn-outline-danger"
+										onclick="return confirm('Esta seguro que desea eliminar el registro?')">
 										<i class="fa fa-trash"></i>
-								</a></td>
+									</a>
 								</td>
 							</tr>
 						</tbody>
-
 					</table>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
 </body>

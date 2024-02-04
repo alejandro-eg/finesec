@@ -48,15 +48,15 @@ class FinesecApplicationTests {
 		
 		//Usuario
 		Usuarios nuevoUsr = new Usuarios();
-		nuevoUsr.setApellidos("Pizarra");
+		nuevoUsr.setApellidos("Chercuelon");
 		nuevoUsr.setCi("1725358525");
 		nuevoUsr.setDireccion("Solanda");
-		nuevoUsr.setEmail("jpziarra@mail.com");
+		nuevoUsr.setEmail("juanchercuelon@gmail.com");
 		nuevoUsr.setEstadoRegistro(true);
 		//nuevoUsr.setIdUsuario(1);
-		nuevoUsr.setNombres("Jhonathan");
-		nuevoUsr.setPassword("123123");
-		nuevoUsr.setRol(nuevoRol);
+		nuevoUsr.setNombres("Juan");
+		nuevoUsr.setPassword("54321");
+		//nuevoUsr.setRol(nuevoRol);
 		nuevoUsr.setTelefono("0990803129");	
 		
 		//servicioUsr.insertarUsuario(nuevoUsr);

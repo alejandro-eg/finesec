@@ -27,8 +27,8 @@ public class Pictogramas implements Serializable {
 	private String descripcion;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "idCategoriaPictograma")
-	private CategoriaPictograma categoriaPictograma;
+	@JoinColumn(name = "fkCategoriaPictograma")
+	private CategoriaPictograma fkCategoriaPictograma;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy ="pictograma")

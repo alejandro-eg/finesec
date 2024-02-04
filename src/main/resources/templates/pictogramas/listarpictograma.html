@@ -5,12 +5,21 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Lista de Pictogramas</title>
+	<meta charset="UTF-8">
+	<title>Lista de Pictogramas</title>
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/plugins/fontawesome-free/css/all.min.css}">
+	<!-- Estilo del tema -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/dist/css/adminlte.css}">
 </head>
 
 <body>
 	<div layout:fragment="cargarpagina">
-		<div class="card">
-			<div class="card-header">
+		<div class="card shadow mb-4">
+			<div class="m-0 font-weight-bold text-primary">
 				<h6 class="card-title">Lista de Pictogramas</h6>
 			</div>
 			<!-- /.card-header -->
@@ -31,13 +40,15 @@
 						<tr th:each="picto: ${ListaP}">
 							<td th:text="${picto.nombre}"></td>
 							<td th:text="${picto.descripcion}"></td>
-							<td th:text="${picto?.categoriaPictograma?.nombre}"></td-->
+							<td th:if="${picto.fkCategoriaPictograma != null}"
+								th:text="${picto.fkCategoriaPictograma.nombre}"></td-->
 
-							<td><a th:href="@{/editarpictograma/}+ ${picto.idPictograma}" class="btn btn-outline-primary"><i
-										class="fa fa-edit"></i></a>
-								<a class="btn btn-outline-danger"
+							<td><a th:href="@{/editarpictograma/}+ ${picto.idPictograma}"
+									class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+								<a th:href="@{/eliminarpictograma/}+ ${picto.idPictograma}" class="btn btn-outline-danger"
 									onclick="return confirm('Esta seguro que desea eliminar el registro?')">
-									<i class="fa fa-trash"></i></a>
+									<i class="fa fa-trash"></i>
+								</a>
 							</td>
 						</tr>
 					</tbody>

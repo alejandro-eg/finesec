@@ -9,22 +9,27 @@
 
 <body>
 	<div layout:fragment="cargarpagina">
-		<h2 class="h3 mb-4 text-gray-800">Nuevo Rol</h2>
-		<form th:action="@{/guardarrol}" th:object="${nuevo}" method="post">
-			
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Nombre Rol</label>
-				<input type="text" th:field="*{nombre}" class="form-control" id="nombreRol">
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">Nuevo Rol</h6>
 			</div>
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Descripcion Rol</label>
-				<input type="text" th:field="*{descripcion}" class="form-control" id="descRol">
-			</div>
+			<form th:action="@{/guardarrol}" th:object="${nuevo}" method="post">
 
-			<input type="hidden" th:field="*{idRol}">
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Nombre Rol</label>
+					<input type="text" th:field="*{nombre}" class="form-control" id="nombreRol">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Descripcion Rol</label>
+					<input type="text" th:field="*{descripcion}" class="form-control" id="descRol">
+				</div>
 
-			<button type="submit" class="btn btn-primary">Guardar</button>
-		</form>
+				<input type="hidden" th:field="*{idRol}">
+
+				<button type="submit" class="btn btn-primary">Guardar</button>
+			</form>
+		</div>
+
 
 	</div>
 

@@ -43,7 +43,7 @@ public class Usuarios implements Serializable {
 	
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_rol")
+	@JoinColumn(name = "rol")
 	private Roles rol;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy ="usuarios")

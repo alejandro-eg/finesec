@@ -7,7 +7,7 @@
 	<title>Lista de Usuarios</title>
 </head>
 
-<body>
+<body class="hold-transition sidebar-mini no-background">
 	<div layout:fragment="cargarpagina">
 		<div class="card">
 			<div class="card-header">
@@ -39,15 +39,17 @@
 							<td th:text="${usu.direccion}"></td>
 							<td th:text="${usu.telefono}"></td>
 							<td th:text="${usu.ci}"></td>
-							<td th:text="${usu.rol.nombre}"></td-->
+							<td th:if="${usu.rol != null}" th:text="${usu.rol.nombre}"></td-->
 							<td th:text="${usu.email}"></td>
 							<td th:text="${usu.password}"></td>
-							
-							<td><a th:href="@{/editarusuario/}+ ${usu.idUsuario}"  
-								class="btn btn-outline-primary"><i class = "fa fa-edit"></i></a>
-									<a class="btn btn-outline-danger" 
+
+							<td><a th:href="@{/editarusuario/}+ ${usu.idUsuario}" class="btn btn-outline-primary"><i
+										class="fa fa-edit"></i></a>
+								<a th:href="@{/eliminarusuario/}+ ${usu.idUsuario}" class="btn btn-outline-danger"
 									onclick="return confirm('Esta seguro que desea eliminar el registro?')">
-									<i class = "fa fa-trash"></i></a></td>
+									<i class="fa fa-trash"></i>
+								</a>
+							</td>
 						</tr>
 					</tbody>
 

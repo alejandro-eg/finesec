@@ -9,34 +9,37 @@
 
 <body>
 	<div layout:fragment="cargarpagina">
-		<h2 class="h3 mb-4 text-gray-800">Nuevo Pictograma</h2>
-		<form th:action="@{/guardarpictograma}" th:object="${nuevo}" method="post">
-
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Nombre Pictograma</label>
-				<input type="text" th:field="*{nombre}" class="form-control" id="nombre">
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">Nuevo Pictograma</h6>
 			</div>
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Descripcion Pictograma</label>
-				<input type="text" th:field="*{descripcion}" class="form-control" id="descripcion">
-			</div>
+			<form th:action="@{/guardarpictograma}" th:object="${nuevo}" method="post">
 
-			<input type="hidden" th:field="*{idPictograma}">
-			
-			<div class="mb-3">
-				<label class="form-label">Categoria Pictograma</label>
-				<select class="form-select" aria-label="Default select example">
-				<option selected>Categoria Pictogramas</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-			</select>
-			</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Nombre Pictograma</label>
+					<input type="text" th:field="*{nombre}" class="form-control" id="nombre">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Descripcion Pictograma</label>
+					<input type="text" th:field="*{descripcion}" class="form-control" id="descripcion">
+				</div>
 
-			
+				<input type="hidden" th:field="*{idPictograma}">
 
-			<button type="submit" class="btn btn-primary">Guardar</button>
-		</form>
+				<div class="mb-3"></div>
+					<select class="form-select" aria-label="Default select example" th:field="*{fkCategoriaPictograma}">
+					<option value="" selected>Categoria</option>
+					<option th:each="cat: ${listaCategoriaPictograma}" th:value="${cat.idCategoriaPictograma}"
+						th:text="${cat.nombre}"></option>
+				</select>
+				</div>
+
+
+
+				<button type="submit" class="btn btn-primary">Guardar</button>
+			</form>
+
+		</div>
 
 	</div>
 
