@@ -67,11 +67,11 @@
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<a href="../../index3.html" class="brand-link">
+			<span class="brand-link">
 				<img th:src="@{themes_AdminLTE/dist/img/logofinesec.png}" alt="AdminLTE Logo"
 					class="brand-image img-circle elevation-3" style="opacity: .8">
 				<span class="brand-text font-weight-light">Finesec</span>
-			</a>
+			</span>
 
 			<!-- Sidebar -->
 			<div class="sidebar">
@@ -82,7 +82,7 @@
 							alt="User Image">
 					</div>
 					<div class="info">
-						<a href="#" class="d-block" th:text="${#authentication.name}">Juan Chercuelón</a>
+						<span class="d-block text-white" th:text="${#authentication.name}">John Lennon</span>
 					</div>
 				</div>
 
@@ -234,38 +234,18 @@
 				<!-- Content Header (Page header) -->
 	
 					<div layout:fragment="cargarpagina">
-						<section class="finesec-section">
-							<div class="finesec-container">
-								<h2>FINESEC</h2>
-								<p>Fundación Pro Integración Educativa y Social del Ecuador</p>
-							</div>
+						<section>
+							<!-- Contenido paginas -->
 						</section>
 						<!-- Mission and Vision Section -->
 						
-						<section class="mission-vision-section">
-							<div class="mission-vision-container">
-								<h2>Misión</h2>
-								<p>La Fundación FINESEC es una entidad sin ánimo de lucro, cuya misión es proporcionar los
-									apoyos necesarios para que las personas con discapacidad intelectual y sus familias,
-									disfruten de calidad de vida en condiciones de igualdad de oportunidades con el resto de
-									la
-									ciudadanía.</p>
-								<h2>Visión</h2>
-								<p>Somos una organización innovadora que mejora día a día y genera confianza en las personas
-									con
-									discapacidad con necesidades de apoyo intensas y generalizadas, en sus familias, en los
-									profesionales y en la sociedad.</p>
-							</div>
-						</section>
+					
 						<!-- End Mission and Vision Section -->
 					</div>
 	
 					<!-- /.content -->
 				
 				<!-- /.content-wrapper -->
-	
-	
-	
 				<!-- Control Sidebar -->
 				<aside class="control-sidebar control-sidebar-dark">
 					<!-- Control sidebar content goes here -->

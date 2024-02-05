@@ -13158,7 +13158,7 @@ body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(.sidebar-m
 }
 
 .content-wrapper  {
-	background-image: url(https://www.finesec.org/es/wp-content/uploads/2022/03/portada-pagina-web.jpg);
+	/*background-image: url(https://www.finesec.org/es/wp-content/uploads/2022/03/portada-pagina-web.jpg);*/
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -13169,6 +13169,12 @@ body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(.sidebar-m
     /* ... tus otras propiedades ... */
 }
 
+.content-image{
+	background-image: url(https://www.finesec.org/es/wp-content/uploads/2022/03/portada-pagina-web.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
 
 .content-wrapper>.content {
 	padding: 0 0.5rem;
