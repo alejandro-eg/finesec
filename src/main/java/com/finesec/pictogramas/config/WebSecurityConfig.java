@@ -49,6 +49,8 @@ public class WebSecurityConfig {
 		http
 			.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/", "/index").permitAll()
+				//.requestMatchers("/admin/**").hasRole("ADMIN") 
+	            //.requestMatchers("/profesor/**").hasRole("PROFESOR")
 				.anyRequest().authenticated()
 			)
 			.formLogin((form) -> form
@@ -72,7 +74,8 @@ public class WebSecurityConfig {
 
 				System.out.println("Usuario recuperado de la base de datos2: " + usuario.getEmail());
 				System.out.println("Contraseña recuperada de la base de datos2: " + usuario.getPassword());
-
+				System.out.println("Usuario con sesion activa: " + usuario.getNombres());
+			
 				
 				Roles rol = usuario.getRol();
 				
@@ -82,7 +85,7 @@ public class WebSecurityConfig {
 				        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 				    }
 
-				    if (rol.getIdRol() == 2) {
+				    if (rol.getIdRol() >= 2) {
 				        System.out.println("Es profesor");
 				        authorities.add(new SimpleGrantedAuthority("ROLE_PROFESOR"));
 				    }
@@ -90,7 +93,7 @@ public class WebSecurityConfig {
 
 
 				return User.builder()
-						.username(usuario.getEmail())
+						.username(usuario.getNombres())
 						.password(passwordEncoder().encode(usuario.getPassword()))
 						.authorities(authorities)
 						.build();
@@ -100,4 +103,6 @@ public class WebSecurityConfig {
 			}
 		};
 	}
+	
+	
 }

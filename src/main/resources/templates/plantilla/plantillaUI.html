@@ -47,11 +47,18 @@
 						<i class="fab fa-whatsapp"></i>
 					</a>
 				</li>
-				<!-- Icono de logout redireccionara al login -->
+				<!-- Icono de logout redireccionara al login
 				<li class="nav-item">
 					<a class="nav-link" th:href="@{/login}">
 						<i class="fas fa-sign-out-alt"></i>
 					</a>
+				</li> -->
+				<li class="nav-item" th:if="${#authorization.expression('isAuthenticated')}">
+				    <form th:action="@{/logout}" method="post">
+				        <a class="nav-link" th:href="@{/logout}" onclick="event.preventDefault(); this.parentNode.submit();">
+				            <i class="fas fa-sign-out-alt"></i>
+				        </a>
+				    </form>
 				</li>
 			</ul>
 		</nav>
@@ -75,7 +82,7 @@
 							alt="User Image">
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">Juan Chercuelón</a>
+						<a href="#" class="d-block" th:text="${#authentication.name}">Juan Chercuelón</a>
 					</div>
 				</div>
 
@@ -114,7 +121,11 @@
 								</li>
 							</ul>
 						</li>
-						<li class="nav-item">
+						
+					
+							
+						<li th:if="${not #authorization.expression('hasRole(''ROLE_PROFESOR'')')}" 
+						class="nav-item">
 							<a href="#" class="nav-link">
 								<i class="nav-icon fas fa-users"></i>
 								<p>
@@ -122,6 +133,7 @@
 									<i class="right fas fa-angle-left"></i>
 								</p>
 							</a>
+							
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
 									<a th:href="@{/nuevorol}" class="nav-link">
@@ -186,28 +198,28 @@
 							</ul>
 
 						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-user"></i>
+						
+						<li
+							th:if="${not #authorization.expression('hasRole(''ROLE_PROFESOR'')')}"
+							class="nav-item"><a href="#" class="nav-link"> <i
+								class="nav-icon fas fa-user"></i>
 								<p>
-									Usuarios
-									<i class="fas fa-angle-left right"></i>
+									Usuarios <i class="fas fa-angle-left right"></i> <span
+										class="badge badge-info right"></span>
 								</p>
-							</a>
+						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item">
-									<a th:href="@{/nuevou}" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a th:href="@{/nuevou}"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>Nuevo Usuario</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a th:href="@{/usuarios}" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
+								</a></li>
+								<li class="nav-item"><a th:href="@{/usuarios}"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>Lista de Usuarios</p>
-									</a>
-								</li>
-
+								</a></li>
+							</ul>
+						</li>
+							
 
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -215,50 +227,52 @@
 			<!-- /.sidebar -->
 		</aside>
 
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper no-background">
-			<!-- Content Header (Page header) -->
 
-			<div class="container-fluid">
-
-				<div layout:fragment="cargarpagina">
-					<section class="finesec-section">
-						<div class="finesec-container">
-							<h2>FINESEC</h2>
-							<p>Fundación Pro Integración Educativa y Social del Ecuador</p>
-						</div>
-					</section>
-					<!-- Mission and Vision Section -->
-					
-					<section class="mission-vision-section">
-						<div class="mission-vision-container">
-							<h2>Misión</h2>
-							<p>La Fundación FINESEC es una entidad sin ánimo de lucro, cuya misión es proporcionar los
-								apoyos necesarios para que las personas con discapacidad intelectual y sus familias,
-								disfruten de calidad de vida en condiciones de igualdad de oportunidades con el resto de
-								la
-								ciudadanía.</p>
-							<h2>Visión</h2>
-							<p>Somos una organización innovadora que mejora día a día y genera confianza en las personas
-								con
-								discapacidad con necesidades de apoyo intensas y generalizadas, en sus familias, en los
-								profesionales y en la sociedad.</p>
-						</div>
-					</section>
-					<!-- End Mission and Vision Section -->
-				</div>
-
-				<!-- /.content -->
+		<div class="container-fluid">
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper no-background">
+				<!-- Content Header (Page header) -->
+	
+					<div layout:fragment="cargarpagina">
+						<section class="finesec-section">
+							<div class="finesec-container">
+								<h2>FINESEC</h2>
+								<p>Fundación Pro Integración Educativa y Social del Ecuador</p>
+							</div>
+						</section>
+						<!-- Mission and Vision Section -->
+						
+						<section class="mission-vision-section">
+							<div class="mission-vision-container">
+								<h2>Misión</h2>
+								<p>La Fundación FINESEC es una entidad sin ánimo de lucro, cuya misión es proporcionar los
+									apoyos necesarios para que las personas con discapacidad intelectual y sus familias,
+									disfruten de calidad de vida en condiciones de igualdad de oportunidades con el resto de
+									la
+									ciudadanía.</p>
+								<h2>Visión</h2>
+								<p>Somos una organización innovadora que mejora día a día y genera confianza en las personas
+									con
+									discapacidad con necesidades de apoyo intensas y generalizadas, en sus familias, en los
+									profesionales y en la sociedad.</p>
+							</div>
+						</section>
+						<!-- End Mission and Vision Section -->
+					</div>
+	
+					<!-- /.content -->
+				
+				<!-- /.content-wrapper -->
+	
+	
+	
+				<!-- Control Sidebar -->
+				<aside class="control-sidebar control-sidebar-dark">
+					<!-- Control sidebar content goes here -->
+				</aside>
+				<!-- /.control-sidebar -->
 			</div>
-			<!-- /.content-wrapper -->
-
-
-
-			<!-- Control Sidebar -->
-			<aside class="control-sidebar control-sidebar-dark">
-				<!-- Control sidebar content goes here -->
-			</aside>
-			<!-- /.control-sidebar -->
+	
 		</div>
 
 		<footer class="main-footer text-center">
