@@ -48,7 +48,7 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/", "/index").permitAll()
+				.requestMatchers("/login", "/index").permitAll()
 				//.requestMatchers("/admin/**").hasRole("ADMIN") 
 	            //.requestMatchers("/profesor/**").hasRole("PROFESOR")
 				.anyRequest().authenticated()
@@ -69,14 +69,35 @@ public class WebSecurityConfig {
 		return userLogin -> {
 			Usuarios usuario = repo.findByEmail(userLogin);
 
+			//SuperAdmin
+			Usuarios superAdmin = new Usuarios();
+		    superAdmin.setEmail("admin@mail.com");
+		    superAdmin.setPassword("123123");
+		    superAdmin.setNombres("Super");
+		    List<GrantedAuthority> authorities2 = new ArrayList<>();
+		    
+		    if(superAdmin.getRol() == null) {
+		    	Roles superRol = new Roles();
+		    	superRol.setIdRol(1);
+		    	superAdmin.setRol(superRol);
+		    	authorities2.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		    }else {
+		    	authorities2.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		    }
+		    
+		    
+		    System.out.println("Usuario recuperado de la base de datos: " + superAdmin.getEmail());
+			System.out.println("Contraseña recuperada de la base de datos: " + superAdmin.getPassword());
+			System.out.println("Usuario con sesion: " + superAdmin.getNombres());
+			
 			if (usuario != null) {
 				List<GrantedAuthority> authorities = new ArrayList<>();
 
 				System.out.println("Usuario recuperado de la base de datos2: " + usuario.getEmail());
 				System.out.println("Contraseña recuperada de la base de datos2: " + usuario.getPassword());
 				System.out.println("Usuario con sesion activa: " + usuario.getNombres());
-			
 				
+						
 				Roles rol = usuario.getRol();
 				
 				if (rol != null) {
@@ -89,17 +110,22 @@ public class WebSecurityConfig {
 				        System.out.println("Es profesor");
 				        authorities.add(new SimpleGrantedAuthority("ROLE_PROFESOR"));
 				    }
+				    		    
 				}
 
-
 				return User.builder()
-						.username(usuario.getNombres())
+						.username(usuario.getEmail())
 						.password(passwordEncoder().encode(usuario.getPassword()))
 						.authorities(authorities)
 						.build();
 			} else {
 				System.out.println("Usuario");
-				throw new UsernameNotFoundException("Usuario no encontrado: " + userLogin);
+				//throw new UsernameNotFoundException("Usuario no encontrado: " + userLogin);
+				return User.builder()
+						.username(superAdmin.getEmail())
+						.password(passwordEncoder().encode(superAdmin.getPassword()))
+						.authorities(authorities2)
+						.build();
 			}
 		};
 	}
