@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finesec.pictogramas.model.CategoriaPictograma;
 import com.finesec.pictogramas.model.Pictogramas;
@@ -49,12 +50,16 @@ public class PictogramasController {
 	}
 	
 	@GetMapping("/editarpictograma/{idPictograma}")
-	public String editarPictograma(@PathVariable("idPictograma") int idPictograma, Model model) {
+	public String editarPictograma(@PathVariable("idPictograma") int idPictograma, @RequestParam("categoriaId") int categoriaId, Model model) {
 	    Pictogramas recuperadoDB = servicioPictograma.findByIdPictograma(idPictograma);
+	    List<CategoriaPictograma> listaCategoriaPictograma = servicioCategoriaPictogramas.ListarCategoriaPigtograma();
 	    model.addAttribute("nuevo", recuperadoDB);
+	    model.addAttribute("listaCategoriaPictograma", listaCategoriaPictograma);
+	    model.addAttribute("categoriaSeleccionada", categoriaId); // Pasar el ID de la categoría seleccionada
 	    return "/pictogramas/nuevopictograma";
 	}
-	
+
+
 	@GetMapping("/eliminarpictograma/{idPictograma}")
 	public String eliminarPictograma(@PathVariable(value="idPictograma")int idPictograma) {
 		servicioPictograma.eliminarPictograma(idPictograma);

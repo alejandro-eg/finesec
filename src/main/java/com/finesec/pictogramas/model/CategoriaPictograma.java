@@ -19,10 +19,15 @@ public class CategoriaPictograma implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idCategoriaPictograma;//id_rol
+	private int idCategoriaPictograma;
 	private String nombre;
 	private String descripcion;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy ="fkCategoriaPictograma")
+	@OneToMany( mappedBy ="fkCategoriaPictograma", cascade = CascadeType.ALL)
 	private List<Pictogramas> pictograma = new ArrayList<>();
+	
+	@Override
+    public String toString() {
+        return this.nombre; // Devuelve el nombre de la categoría
+    }
 }
