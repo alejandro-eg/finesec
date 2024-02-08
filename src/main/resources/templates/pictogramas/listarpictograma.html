@@ -1,72 +1,77 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{/plantilla/plantillaUI}">
 
 <head>
-<meta charset="UTF-8">
-<title>Lista de Pictogramas</title>
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	th:href="@{themes_AdminLTE/plugins/fontawesome-free/css/all.min.css}">
-<!-- Estilo del tema -->
-<link rel="stylesheet"
-	th:href="@{themes_AdminLTE/dist/css/adminlte.css}">
-
-<style>
-.table-blue thead th {
-	background-color: rgba(131, 0, 233, 0.54) !important
-}
-</style>
+	<meta charset="UTF-8">
+	<title>Lista de Pictogramas</title>
+	<meta charset="UTF-8">
+	<title>Lista de Pictogramas</title>
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/plugins/fontawesome-free/css/all.min.css}">
+	<!-- Estilo del tema -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/dist/css/adminlte.css}">
 </head>
 
 <body>
 	<div layout:fragment="cargarpagina">
-		<br> <br>
 		<div class="card shadow mb-4">
-			<div class="card-header py-3">
-				<h5 class="m-0 font-weight-bold text-primary">Lista de
-					Pictogramas</h5>
+			<div class="m-0 font-weight-bold text-primary">
+				<h6 class="card-title">Lista de Pictogramas</h6>
 			</div>
+			<!-- /.card-header -->
 			<div class="card-body">
-				<div class="table-responsive">
-					<table id="listapictogramas"
-						class="table table-bordered table-striped table-blue">
-						<thead>
-							<tr>
-								<th>Nombre</th>
-								<th>Descripción</th>
-								<th>Categoría</th>
-								<th>Acciones</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="picto: ${ListaP}">
-								<td th:text="${picto.nombre}"></td>
-								<td th:text="${picto.descripcion}"></td>
-								<td th:if="${picto.fkCategoriaPictograma != null}"><span
-									th:text="${picto.fkCategoriaPictograma.nombre}"></span></td>
-								<td><a
-									th:href="@{/editarpictograma/{id}(id=${picto.idPictograma}, categoriaId=${picto.fkCategoriaPictograma.idCategoriaPictograma})}"
-									class="btn btn-sm btn-outline-primary" title="Editar"> <i
-										class="fa fa-edit"></i></a> <a
-									th:href="@{/eliminarpictograma/}+ ${picto.idPictograma}"
-									class="btn btn-sm btn-outline-danger" title="Eliminar"
-									onclick="return confirm('¿Está seguro que desea eliminar el registro?')">
-										<i class="fa fa-trash"></i>
-								</a></td>
-							</tr>
-						</tbody>
+				<table id="example1" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Descripcion</th>
+							<th>Categoria</th>
+							<th>Acciones</th>
 
-					</table>
-				</div>
+						</tr>
+
+					</thead>
+
+					<tbody>
+						<tr th:each="picto: ${ListaP}">
+							<td th:text="${picto.nombre}"></td>
+							<td th:text="${picto.descripcion}"></td>
+							<td th:if="${picto.fkCategoriaPictograma != null}"
+								th:text="${picto.fkCategoriaPictograma.nombre}"></td-->
+
+							<td><a th:href="@{/editarpictograma/}+ ${picto.idPictograma}"
+									class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+								<a th:href="@{/eliminarpictograma/}+ ${picto.idPictograma}" class="btn btn-outline-danger"
+									onclick="return confirm('Esta seguro que desea eliminar el registro?')">
+									<i class="fa fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+
 			</div>
+			<!-- /.card-body -->
 		</div>
-
 		<!-- /.card -->
+	</div>
+	<!-- /.col -->
+	</div>
+	<!-- /.row -->
+	</div>
+	<!-- /.content-wrapper -->
+
+
+
+
+	<!-- /.control-sidebar -->
+	</div>
+	<!-- ./wrapper -->
 	</div>
 </body>
 
