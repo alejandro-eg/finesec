@@ -23,8 +23,6 @@ public class UsuariosController {
 	private IUsuarioService servicioUsuarios;
 	private Usuarios nuevoUsuario;
 	
-	@Autowired
-    private IRolService servicioRol;
 	@GetMapping("/usuarios") //url
 	public String listarUsuarios(Model model) { //metodo de ejecucion al leer la url
 		List<Usuarios> datosUsuariosDB= servicioUsuarios.ListarUsuario();
@@ -35,9 +33,9 @@ public class UsuariosController {
 	@GetMapping("/nuevou") //url
 	public String insertarUsuario(Model model) {
 		nuevoUsuario = new Usuarios();
-		List<Roles> listaRoles = servicioRol.ListarRoles();
+		List<Usuarios> listaUsuarios = servicioUsuarios.ListarUsuario();
 		model.addAttribute("nuevo", nuevoUsuario);//método de ejecución al leer la url
-		model.addAttribute("listaRol", listaRoles);
+		model.addAttribute("listaRol", listaUsuarios);
 		return "/usuario/nuevousario"; //ruta fisica de la pagina web
 	}
 	

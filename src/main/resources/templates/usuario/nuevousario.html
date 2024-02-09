@@ -54,7 +54,7 @@
 				<div class="mb-3">
 					<label for="exampleSelect" class="form-label">Rol</label>
 					<select class="form-select" id="exampleSelect" aria-label="Default select example" th:field="*{rol}">
-						<option value="" selected>Seleccione</option>
+						<option selected value="0" >Seleccione una opción</option>
 						<option th:each="rol: ${listaRol}" th:value="${rol.idRol}"
 							th:text="${rol.nombre}"></option>
 					</select>
