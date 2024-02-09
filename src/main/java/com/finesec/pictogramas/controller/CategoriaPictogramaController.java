@@ -51,4 +51,10 @@ public class CategoriaPictogramaController {
 		return "redirect:/categoriapictograma";
 	}
 
+	@GetMapping("/vercategoriasdepictogramas/{nombreIngles}")
+	public String verCategoriaPictograma(@PathVariable("nombreIngles") String nombreIngles, Model model) {
+		System.out.println(nombreIngles);
+		model.addAttribute("nombreIngles", nombreIngles);
+		return "/categoriapictogramas/vercategoriasdepictogramas";
+	}
 }

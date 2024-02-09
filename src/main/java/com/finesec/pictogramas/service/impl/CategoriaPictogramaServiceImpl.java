@@ -46,7 +46,5 @@ public class CategoriaPictogramaServiceImpl implements ICategoriaPictogramaServi
 		repo.deleteById(idCategoriaPictograma);
 		
 	}
-	
-	
 
 }

@@ -21,6 +21,7 @@ public class CategoriaPictograma implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCategoriaPictograma;
 	private String nombre;
+	private String nombreIngles;
 	private String descripcion;
 	
 	@OneToMany( mappedBy ="fkCategoriaPictograma", cascade = CascadeType.ALL)
