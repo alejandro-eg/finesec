@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/plantilla/plantillaUI}">
+<head>
+    <meta charset="UTF-8">
+    <title>Pictogramas | Finesec</title>
+    <style>
+        #external-site {
+            position: fixed;
+            top: -100px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Pictogramas de la categoría <span th:text="${nombreIngles}"></span>
+    </h1>
+    <div layout:fragment="cargarpagina">
+        <!-- No es necesario volver a escribir el h1 aquí -->
+        <iframe id="external-site" th:src="@{'https://beta.arasaac.org/pictograms/search?selectedKey=' + ${nombreIngles}}">
+        </iframe>
+    </div>
+</body>
+</html>
