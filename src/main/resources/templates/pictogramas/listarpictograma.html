@@ -48,6 +48,9 @@
 								<a th:href="@{/eliminarpictograma/}+ ${picto.idPictograma}" class="btn btn-outline-danger"
 									onclick="return confirm('Esta seguro que desea eliminar el registro?')">
 									<i class="fa fa-trash"></i>
+									<a th:href="@{'/vercategoriasdepictogramas/' + ${picto.fkCategoriaPictograma.nombreIngles}}"
+									class="btn btn-outline-secondary"> <i class="fa fa-eye"></i>
+								</a>
 								</a>
 							</td>
 						</tr>
