@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{/plantilla/plantillaUI}">
 
 <head>
-<meta charset="UTF-8">
-<title>Lista de Categorias Pictogramas</title>
+	<meta charset="UTF-8">
+	<title>Lista de Categorias</title>
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/plugins/fontawesome-free/css/all.min.css}">
+	<!-- Estilo del tema -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/dist/css/adminlte.css}">
+
+	<style>
+		.table-blue thead th {
+			background-color: rgba(131, 0, 233, 0.54) !important
+		}
+	</style>
 </head>
 
 <body>
@@ -13,14 +25,12 @@
 		<br> <br>
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h5 class="m-0 font-weight-bold text-primary">Lista Categoria
-					Pictogramas</h5>
+				<h5 class="m-0 font-weight-bold text-primary">Lista de
+					Categorias</h5>
 			</div>
-
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
+					<table id="listapictogramas" class="table table-bordered table-striped table-blue">
 						<thead>
 							<tr>
 								<th>Id Categoria Pictograma</th>
@@ -55,8 +65,8 @@
 			</div>
 		</div>
 
+		<!-- /.card -->
 	</div>
-
 </body>
 
 </html>

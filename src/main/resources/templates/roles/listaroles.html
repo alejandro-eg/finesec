@@ -5,19 +5,32 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Lista de Roles</title>
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/plugins/fontawesome-free/css/all.min.css}">
+	<!-- Estilo del tema -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/dist/css/adminlte.css}">
 
+	<style>
+		.table-blue thead th {
+			background-color: rgba(131, 0, 233, 0.54) !important
+		}
+	</style>
 </head>
 
 <body>
 	<div layout:fragment="cargarpagina">
+		<br> <br>
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-primary">Lista Roles</h6>
+				<h5 class="m-0 font-weight-bold text-primary">Lista de
+					Roles</h5>
 			</div>
-
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<table id="listapictogramas" class="table table-bordered table-striped table-blue">
 						<thead>
 							<tr>
 								<th>Id Rol</th>
@@ -45,6 +58,8 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- /.card -->
 	</div>
 </body>
 

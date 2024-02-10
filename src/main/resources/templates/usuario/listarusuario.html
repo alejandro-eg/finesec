@@ -5,73 +5,74 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Lista de Usuarios</title>
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/plugins/fontawesome-free/css/all.min.css}">
+	<!-- Estilo del tema -->
+	<link rel="stylesheet" th:href="@{themes_AdminLTE/dist/css/adminlte.css}">
+
+	<style>
+		.table-blue thead th {
+			background-color: rgba(131, 0, 233, 0.54) !important
+		}
+	</style>
 </head>
 
-<body class="hold-transition sidebar-mini no-background">
+<body>
 	<div layout:fragment="cargarpagina">
-		<div class="card">
-			<div class="card-header">
-				<h6 class="card-title">Lista de Usuarios</h6>
+		<br> <br>
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h5 class="m-0 font-weight-bold text-primary">Lista de
+					Usuarios</h5>
 			</div>
-			<!-- /.card-header -->
 			<div class="card-body">
-				<table id="example1" class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<th>Nombre</th>
-							<th>Apellido</th>
-							<th>Dirección</th>
-							<th>Telefono</th>
-							<th>CI</th>
-							<th>Rol</th>
-							<th>Email</th>
-							<th>Contraseña</th>
-							<th>Acciones</th>
+				<div class="table-responsive">
+					<table id="listapictogramas" class="table table-bordered table-striped table-blue">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Apellido</th>
+								<th>Dirección</th>
+								<th>Telefono</th>
+								<th>CI</th>
+								<th>Rol</th>
+								<th>Email</th>
+								<th>Contraseña</th>
+								<th>Acciones</th>
 
-						</tr>
+							</tr>
 
-					</thead>
+						</thead>
 
-					<tbody>
-						<tr th:each="usu: ${ListaU}">
-							<td th:text="${usu.nombres}"></td>
-							<td th:text="${usu.apellidos}"></td>
-							<td th:text="${usu.direccion}"></td>
-							<td th:text="${usu.telefono}"></td>
-							<td th:text="${usu.ci}"></td>
-							<td th:if="${usu.rol != null}" th:text="${usu.rol.nombre}"></td-->
-							<td th:text="${usu.email}"></td>
-							<td th:text="${usu.password}"></td>
+						<tbody>
+							<tr th:each="usu: ${ListaU}">
+								<td th:text="${usu.nombres}"></td>
+								<td th:text="${usu.apellidos}"></td>
+								<td th:text="${usu.direccion}"></td>
+								<td th:text="${usu.telefono}"></td>
+								<td th:text="${usu.ci}"></td>
+								<td th:if="${usu.rol != null}" th:text="${usu.rol.nombre}"></td-->
+								<td th:text="${usu.email}"></td>
+								<td th:text="${usu.password}"></td>
+								<td><a th:href="@{/editarusuario/}+ ${usu.idUsuario}" class="btn btn-outline-primary"><i
+											class="fa fa-edit"></i></a>
+									<a th:href="@{/eliminarusuario/}+ ${usu.idUsuario}" class="btn btn-outline-danger"
+										onclick="return confirm('Esta seguro que desea eliminar el registro?')">
+										<i class="fa fa-trash"></i>
+									</a>
+								</td>
+							</tr>
+						</tbody>
 
-							<td><a th:href="@{/editarusuario/}+ ${usu.idUsuario}" class="btn btn-outline-primary"><i
-										class="fa fa-edit"></i></a>
-								<a th:href="@{/eliminarusuario/}+ ${usu.idUsuario}" class="btn btn-outline-danger"
-									onclick="return confirm('Esta seguro que desea eliminar el registro?')">
-									<i class="fa fa-trash"></i>
-								</a>
-							</td>
-						</tr>
-					</tbody>
-
-				</table>
-
+					</table>
+				</div>
 			</div>
-			<!-- /.card-body -->
 		</div>
+
 		<!-- /.card -->
-	</div>
-	<!-- /.col -->
-	</div>
-	<!-- /.row -->
-	</div>
-	<!-- /.content-wrapper -->
-
-
-
-
-	<!-- /.control-sidebar -->
-	</div>
-	<!-- ./wrapper -->
 	</div>
 </body>
 

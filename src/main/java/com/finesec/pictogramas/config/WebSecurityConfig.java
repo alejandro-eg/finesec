@@ -101,12 +101,12 @@ public class WebSecurityConfig {
 				Roles rol = usuario.getRol();
 				
 				if (rol != null) {
-				    if (rol.getIdRol() == 1) {
+				    if ("Administrador".equals(rol.getNombre())) {
 				        System.out.println("Es admin");
 				        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 				    }
 
-				    if (rol.getIdRol() >= 2) {
+				    if ("Profesor".equals(rol.getNombre())) {
 				        System.out.println("Es profesor");
 				        authorities.add(new SimpleGrantedAuthority("ROLE_PROFESOR"));
 				    }

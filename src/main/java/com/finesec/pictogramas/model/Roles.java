@@ -22,11 +22,15 @@ public class Roles implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_rol")
 	private int idRol;//id_rol
 	private String nombre;
 	private String descripcion;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy ="rol")
 	private List<Usuarios> usuarios = new ArrayList<>();
+	
+	@Override
+    public String toString() {
+        return this.nombre; // Devuelve el nombre del rol
+    }
 }

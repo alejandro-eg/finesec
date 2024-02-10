@@ -13,7 +13,7 @@ import com.finesec.pictogramas.service.IUsuarioService;
 @Service
 @Component
 
-public class UsuarioServiceImpl  implements IUsuarioService{
+public class UsuarioServiceImpl implements IUsuarioService {
 	@Autowired
 	private IUsuariosRepository repo;
 
@@ -21,7 +21,7 @@ public class UsuarioServiceImpl  implements IUsuarioService{
 	public void insertarUsuario(Usuarios nuevo) {
 		repo.save(nuevo);
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class UsuarioServiceImpl  implements IUsuarioService{
 		return repo.findByIdUsuario(idUsuario);
 	}
 
-	//Método para inicio de sesión
+	// Método para inicio de sesión
 	@Override
 	public Usuarios findByEmail(String emeal) {
 		// TODO Auto-generated method stub
@@ -53,5 +53,24 @@ public class UsuarioServiceImpl  implements IUsuarioService{
 		// TODO Auto-generated method stub
 		repo.deleteById(idUsuario);
 	}
-	
+
+	@Override
+	public Usuarios buscar(String nombres) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Usuarios> buscarUsuarios(String nombres, Integer rolId) {
+		if (nombres == null) {
+	        nombres = "";
+	    }
+
+	    if (rolId == null) {
+	        return repo.findByNombres(nombres);
+	    }
+
+	    return repo.findByNombresAndRol_IdRol(nombres, rolId);
+	}
+
 }

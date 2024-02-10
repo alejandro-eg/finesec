@@ -56,7 +56,7 @@
 					<select class="form-select" id="exampleSelect" aria-label="Default select example" th:field="*{rol}">
 						<option value="" selected>Seleccione</option>
 						<option th:each="rol: ${listaRol}" th:value="${rol.idRol}"
-							th:text="${rol.nombre}"></option>
+							th:text="${rol.nombre}" th:selected="${rolSeleccionado == rol.idRol}"></option>
 					</select>
 				</div>
 
