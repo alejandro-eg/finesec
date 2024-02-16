@@ -1,39 +1,55 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{/plantilla/plantillaUI}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/plantilla/plantillaUI}">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Nuevo Rol</title>
+    <meta charset="UTF-8">
+    <title>Nuevo Rol</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://blog.oxfamintermon.org/wp-content/uploads/2017/05/que-es-una-ong.jpg'); /* Reemplaza 'ruta/de/tu/imagen.jpg' con la ubicación de tu imagen de fondo */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .form-input-custom {
+            width: 100%;
+        }
+
+        .card-custom {
+            max-width: 800px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body>
-	<div layout:fragment="cargarpagina">
-		<div class="card shadow mb-4">
-			<div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-primary">Nuevo Rol</h6>
-			</div>
-			<form th:action="@{/guardarrol}" th:object="${nuevo}" method="post">
+    <div layout:fragment="cargarpagina" class="container mt-4">
+        <div class="card shadow mb-4 card-custom">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Nuevo Rol</h6>
+            </div>
+            <form th:action="@{/guardarrol}" th:object="${nuevo}" method="post" class="p-4">
 
-				<div class="mb-3">
-					<label for="exampleInputPassword1" class="form-label">Nombre Rol</label>
-					<input type="text" th:field="*{nombre}" class="form-control" id="nombreRol">
-				</div>
-				<div class="mb-3">
-					<label for="exampleInputPassword1" class="form-label">Descripcion Rol</label>
-					<input type="text" th:field="*{descripcion}" class="form-control" id="descRol">
-				</div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Nombre Rol</label>
+                    <input type="text" th:field="*{nombre}" class="form-control form-input-custom" id="nombreRol">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Descripción Rol</label>
+                    <input type="text" th:field="*{descripcion}" class="form-control form-input-custom" id="descRol">
+                </div>
 
-				<input type="hidden" th:field="*{idRol}">
+                <input type="hidden" th:field="*{idRol}">
 
-				<button type="submit" class="btn btn-primary">Guardar</button>
-			</form>
-		</div>
-
-
-	</div>
-
-
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

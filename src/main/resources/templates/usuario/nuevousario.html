@@ -6,75 +6,86 @@
 	<meta charset="UTF-8">
 	<title>Nuevo Usuario</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-	
+	 <style>
+        .form-input-custom {
+            width: 30%; /* Ajusta el porcentaje del panel */
+        }
+         body {
+            background-image: url('https://blog.oxfamintermon.org/wp-content/uploads/2017/05/que-es-una-ong.jpg'); /* Reemplaza 'ruta/de/tu/imagen.jpg' con la ubicación de tu imagen de fondo */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
 
 <body>
-	<div layout:fragment="cargarpagina">
+	<div layout:fragment="cargarpagina" class="container mt-4">
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary">Nuevo Usuario</h6>
 			</div>
-			<form th:action="@{/guardarusuario}" th:object="${nuevo}" method="post">
+			<form th:action="@{/guardarusuario}" th:object="${nuevo}" method="post" class="p-4">
 
-				<div class="mb-3">
-					<label for="exampleInputPassword1" class="form-label">Nombres</label>
-					<input type="text" th:field="*{nombres}" class="form-control" id="exampleInputPassword1">
-				</div>
-				<div class="mb-3">
-					<label for="exampleInputPassword1" class="form-label">Apellidos</label>
-					<input type="text" th:field="*{apellidos}" class="form-control" id="exampleInputPassword1">
-				</div>
-				<div class="mb-3">
-					<label for="exampleInputPassword1" class="form-label">Dirección</label>
-					<input type="text" th:field="*{direccion}" class="form-control" id="exampleInputPassword1">
-				</div>
-				<div class="mb-3">
-					<label for="exampleInputPassword1" class="form-label">Telefono</label>
-					<input type="text" th:field="*{telefono}" class="form-control" id="exampleInputPassword1">
-				</div>
-				<div class="mb-3">
-					<label for="exampleInputEmail1" class="form-label">Email</label>
-					<input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1"
-						aria-describedby="emailHelp">
-
-				</div>
-				<div class="mb-3">
-					<label for="exampleInputPassword1" class="form-label">Cedula</label>
-					<input type="text" th:field="*{ci}" class="form-control" id="exampleInputPassword1">
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="nombres" class="form-label">Nombres</label>
+						<input type="text" th:field="*{nombres}" class="form-control" id="nombres">
+					</div>
+					<div class="col-md-6">
+						<label for="apellidos" class="form-label">Apellidos</label>
+						<input type="text" th:field="*{apellidos}" class="form-control" id="apellidos">
+					</div>
 				</div>
 
-				<div class="mb-3">
-					<label for="exampleInputPassword1" class="form-label">Password</label>
-					<input type="text" th:field="*{password}" class="form-control" id="exampleInputPassword1">
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="direccion" class="form-label">Dirección</label>
+						<input type="text" th:field="*{direccion}" class="form-control" id="direccion">
+					</div>
+					<div class="col-md-6">
+						<label for="telefono" class="form-label">Teléfono</label>
+						<input type="text" th:field="*{telefono}" class="form-control" id="telefono">
+					</div>
 				</div>
 
-				<input type="hidden" th:field="*{idUsuario}">
-
-				<div class="mb-3">
-					<label for="exampleSelect" class="form-label">Rol</label>
-					<select class="form-select" id="exampleSelect" aria-label="Default select example" th:field="*{rol}">
-						<option value="" selected>Seleccione</option>
-						<option th:each="rol: ${listaRol}" th:value="${rol.idRol}"
-							th:text="${rol.nombre}" th:selected="${rolSeleccionado == rol.idRol}"></option>
-					</select>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="email" class="form-label">Email</label>
+						<input type="email" th:field="*{email}" class="form-control" id="email" aria-describedby="emailHelp">
+					</div>
+					<div class="col-md-6">
+						<label for="ci" class="form-label">Cedula</label>
+						<input type="text" th:field="*{ci}" class="form-control" id="ci">
+					</div>
 				</div>
 
-				
-
-
-				<div class="mb-3 form-check">
-					<input type="checkbox" class="form-check-input" id="exampleCheck1">
-					<label class="form-check-label" for="exampleCheck1">Habilitado</label>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="password" class="form-label">Password</label>
+						<input type="password" th:field="*{password}" class="form-control" id="password">
+					</div>
+					<div class="col-md-6">
+						<label for="exampleSelect" class="form-label">Rol</label>
+						<select class="form-select form-input-custom" id="exampleSelect" aria-label="Default select example" th:field="*{rol}">
+							<option value="" selected>Seleccione</option>
+							<option th:each="rol: ${listaRol}" th:value="${rol.idRol}" th:text="${rol.nombre}"
+								th:selected="${rolSeleccionado == rol.idRol}"></option>
+						</select>
+					</div>
 				</div>
+
+				<div class="row mb-3">
+					<div class="col-md-6 form-check">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<label class="form-check-label" for="exampleCheck1">Habilitado</label>
+					</div>
+				</div>
+
 				<button type="submit" class="btn btn-primary">Guardar</button>
 			</form>
 		</div>
-
-
 	</div>
-
-
 </body>
 
 </html>

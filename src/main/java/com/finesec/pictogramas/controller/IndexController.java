@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class IndexController {
-	@GetMapping("/") //url
+	@GetMapping("/principal") //url
 	public String inicio() { //metodo de ejecucion al leer la url
 		return "/index"; //ruta fisica de la pagina web
 	}
