@@ -33,10 +33,20 @@ public class RolesController {
 	}
 	
 	@PostMapping("/guardarrol")
-	public String guardarRol(@ModelAttribute("nuevo")Roles nuevoRoles) {
-		servicioRoles.insertarRol(nuevoRoles);
-		return "redirect:/roles";
-	}
+    public String guardarRol(@ModelAttribute("nuevo") Roles nuevoRoles, Model model) {
+        // Verificar si el rol ya existe por nombre
+        Roles rolExistente = servicioRoles.findByNombre(nuevoRoles.getNombre());
+
+        if (rolExistente != null) {
+            // si el rol existe mostrara una alerta
+            model.addAttribute("alerta", "El rol ya existe. Por favor, elige otro nombre.");
+            return "/roles/nuevorol";
+        }
+
+        // Guardar el rol si no existe
+        servicioRoles.insertarRol(nuevoRoles);
+        return "redirect:/roles";
+    }
 	
 	@GetMapping("/editarrol/{idRol}")
 	public String editarRol(@PathVariable("idRol") int idRol, Model model) {

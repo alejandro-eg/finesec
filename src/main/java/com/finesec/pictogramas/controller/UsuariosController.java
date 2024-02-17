@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ public class UsuariosController {
 	@Autowired
 	private IUsuarioService servicioUsuarios;
 	private Usuarios nuevoUsuario;
+	private Boolean editMode = false;
 	
 	@Autowired
     private IRolService servicioRol;
@@ -30,6 +32,7 @@ public class UsuariosController {
 	public String listarUsuarios(Model model) { //metodo de ejecucion al leer la url
 		List<Usuarios> datosUsuariosDB= servicioUsuarios.ListarUsuario();
 		model.addAttribute("ListaU", datosUsuariosDB);
+		model.addAttribute("editMode", editMode); // Pasa el modo de edición al modelo
 		return "/usuario/listarusuario"; //ruta fisica de la pagina web
 	}
 	
@@ -43,10 +46,42 @@ public class UsuariosController {
 	}
 	
 	@PostMapping("/guardarusuario")
-	public String guardarUsuario(@ModelAttribute("nuevo")Usuarios nuevoUsuario) {
-		servicioUsuarios.insertarUsuario(nuevoUsuario);
-		return "redirect:/usuarios";
+	public String guardarUsuario(@ModelAttribute("nuevo")Usuarios nuevoUsuario, BindingResult result, Model model) {
+	    Usuarios emailExistente = servicioUsuarios.findByCi(nuevoUsuario.getCi());
+	    Usuarios cedulaExistente = servicioUsuarios.findByEmail(nuevoUsuario.getEmail());
+
+	    if (emailExistente != null) {
+	        // Validación condicional para evitar errores en el campo ci cuando estamos en modo de edición
+	        if (!editMode) {
+	            // si el usuario con ese email existe mostrara una alerta
+	            model.addAttribute("alerta", "Ya ha sido creado un usuario con esa cedula, por favor proporciona una nueva");
+	            model.addAttribute("listaRol", servicioRol.ListarRoles());
+	            editMode = false;
+	            model.addAttribute("editMode", editMode);
+	            return "/usuario/nuevousario";
+	        }
+	    } else if (cedulaExistente != null) {
+	    	
+	    	if (!editMode) {
+	    		// si el usuario con esa cedula existe mostrara una alerta
+		        model.addAttribute("alerta2", "Ya ha sido creado un usuario con ese email, por favor proporciona una nueva");
+		        model.addAttribute("listaRol", servicioRol.ListarRoles());
+		        editMode = false;
+		        model.addAttribute("editMode", editMode);
+		        return "/usuario/nuevousario";
+			}
+	        
+	    }
+
+	    servicioUsuarios.insertarUsuario(nuevoUsuario);
+	    
+	    // Reinicia editMode
+	    editMode = false;
+	    model.addAttribute("editMode", editMode);
+
+	    return "redirect:/usuarios";
 	}
+
 	
 	@GetMapping("/editarusuario/{idUsuario}")
 	public String editarUsuario(@PathVariable("idUsuario") int idUsuario, Model model) {
@@ -54,6 +89,8 @@ public class UsuariosController {
 	    List<Roles> listaRoles = servicioRol.ListarRoles();
 	    model.addAttribute("nuevo", recuperadoDB);
 	    model.addAttribute("listaRol", listaRoles);
+	    editMode = true;
+        model.addAttribute("editMode", editMode);
 	    /*model.addAttribute("rolSeleccionado", rolId);*/
 	    return "/usuario/nuevousario";
 	}

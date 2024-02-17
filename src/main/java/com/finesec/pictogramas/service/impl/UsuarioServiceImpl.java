@@ -30,11 +30,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		return repo.findAll();
 	}
 
-	@Override
-	public Usuarios buscarCI(String ci) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Usuarios findByIdUsuario(int idUsuario) {
@@ -71,6 +66,12 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	    }
 
 	    return repo.findByNombresAndRol_IdRol(nombres, rolId);
+	}
+
+	@Override
+	public Usuarios findByCi(String ci) {
+		// TODO Auto-generated method stub
+		return repo.findByCi(ci);
 	}
 
 }

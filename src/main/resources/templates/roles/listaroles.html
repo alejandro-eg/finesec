@@ -17,13 +17,14 @@
 		.table-blue thead th {
 			background-color: rgba(131, 0, 233, 0.54) !important
 		}
-		
+
 		body {
-            background-image: url('https://elsumario.com/wp-content/uploads/2015/07/manitas.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed; /* Fija la imagen de fondo para que no se desplace con el contenido */
-        }
+			background-image: url('https://elsumario.com/wp-content/uploads/2015/07/manitas.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			/* Fija la imagen de fondo para que no se desplace con el contenido */
+		}
 	</style>
 </head>
 
@@ -43,6 +44,7 @@
 								<th>Id Rol</th>
 								<th>Nombre</th>
 								<th>Descripcion</th>
+								<th>Estado</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -51,6 +53,9 @@
 								<td th:text="${rol.idRol}"></td>
 								<td th:text="${rol.nombre}"></td>
 								<td th:text="${rol.descripcion}"></td>
+								<td> <span th:if="${rol.estado}">Activo</span>
+									<span th:unless="${rol.estado}">Inactivo</span>
+								</td>
 								<td>
 									<a th:href="@{/editarrol/}+ ${rol.idRol}" class="btn btn-outline-primary"><i
 											class="fa fa-edit"></i></a>

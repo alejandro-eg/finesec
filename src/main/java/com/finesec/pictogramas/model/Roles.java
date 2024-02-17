@@ -25,6 +25,7 @@ public class Roles implements Serializable{
 	private int idRol;//id_rol
 	private String nombre;
 	private String descripcion;
+	private Boolean estado;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy ="rol")
 	private List<Usuarios> usuarios = new ArrayList<>();

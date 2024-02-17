@@ -11,6 +11,8 @@ public interface IUsuariosRepository extends JpaRepository<Usuarios, Integer> {
 
 	// Método para inicio de sesión
 	public Usuarios findByEmail(String emeal);
+	
+	public Usuarios findByCi(String ci);
 
 	List<Usuarios> findByNombresAndRol_IdRol(String nombres, Integer rolId);
 

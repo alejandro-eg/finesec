@@ -40,7 +40,7 @@ public class Usuarios implements Serializable {
 	private String password;
 	@Column(name = "user_identificacion",length = 15)
 	private String ci;
-	private boolean estadoRegistro;//estado_registro
+	private Boolean estadoRegistro;//estado_registro
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)

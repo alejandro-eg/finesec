@@ -29,11 +29,6 @@ public class CategoriaPictogramaServiceImpl implements ICategoriaPictogramaServi
 		return repo.findAll();
 	}
 
-	@Override
-	public CategoriaPictograma buscar(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public CategoriaPictograma findByIdCategoriaPictograma(int idCategoriaPictograma) {
@@ -45,6 +40,18 @@ public class CategoriaPictogramaServiceImpl implements ICategoriaPictogramaServi
 		// TODO Auto-generated method stub
 		repo.deleteById(idCategoriaPictograma);
 		
+	}
+
+	@Override
+	public CategoriaPictograma findByNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return repo.findByNombre(nombre);
+	}
+
+	@Override
+	public CategoriaPictograma findByNombreIngles(String nombreIngles) {
+		// TODO Auto-generated method stub
+		return repo.findByNombreIngles(nombreIngles);
 	}
 
 }

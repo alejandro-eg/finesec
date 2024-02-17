@@ -9,7 +9,7 @@ public interface IUsuarioService {
 	public void insertarUsuario(Usuarios nuevo);
 	public List<Usuarios> ListarUsuario();
 	public List<Usuarios> buscarUsuarios(String nombres, Integer rolId);
-	public Usuarios buscarCI(String ci);
+	public Usuarios findByCi(String ci);
 	public Usuarios findByIdUsuario(int idUsuario);
 	//Método para inicio de sesión
 	public Usuarios findByEmail(String emeal);

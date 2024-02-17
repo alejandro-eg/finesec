@@ -45,4 +45,9 @@ public class RolServiceImpl implements IRolService{
 		repo.deleteById(idRol);
 	}
 
+	@Override
+	public Roles findByNombre(String nombre) {
+		return repo.findByNombre(nombre);
+	}
+
 }

@@ -33,7 +33,17 @@ public class CategoriaPictogramaController {
 	}
 	
 	@PostMapping("/guardarcategoriapictograma")
-	public String guardarCategoriaPictograma(@ModelAttribute("nuevo")CategoriaPictograma nuevaCategoriaPictograma) {
+	public String guardarCategoriaPictograma(@ModelAttribute("nuevo")CategoriaPictograma nuevaCategoriaPictograma, Model model){
+		CategoriaPictograma nombreExistente = servicioCategoriaPictograma.findByNombre(nuevaCategoriaPictograma.getNombre());
+		CategoriaPictograma keywordExistente = servicioCategoriaPictograma.findByNombreIngles(nuevaCategoriaPictograma.getNombreIngles());
+		if (nombreExistente != null) {
+            // si la categoria existe mostrara una alerta
+            model.addAttribute("alerta", "La categoria ya existe. Por favor, elige otro nombre.");
+            return "/categoriapictogramas/nuevacategoriapictograma";
+        }else if (keywordExistente != null) {
+        	 model.addAttribute("alerta2", "La categoria ya existe. Por favor, elige otro keyword.");
+             return "/categoriapictogramas/nuevacategoriapictograma";
+		}
 		servicioCategoriaPictograma.insertarCategoriaPictograma(nuevaCategoriaPictograma);
 		return "redirect:/categoriapictograma";
 	}

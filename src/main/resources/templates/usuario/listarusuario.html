@@ -17,12 +17,14 @@
 		.table-blue thead th {
 			background-color: rgba(131, 0, 233, 0.54) !important
 		}
+
 		body {
-            background-image: url('https://elsumario.com/wp-content/uploads/2015/07/manitas.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed; /* Fija la imagen de fondo para que no se desplace con el contenido */
-        }
+			background-image: url('https://elsumario.com/wp-content/uploads/2015/07/manitas.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			/* Fija la imagen de fondo para que no se desplace con el contenido */
+		}
 	</style>
 </head>
 
@@ -47,6 +49,7 @@
 								<th>Rol</th>
 								<th>Email</th>
 								<th>Contraseña</th>
+								<th>Estado</th>
 								<th>Acciones</th>
 
 							</tr>
@@ -63,6 +66,9 @@
 								<td th:if="${usu.rol != null}" th:text="${usu.rol.nombre}"></td-->
 								<td th:text="${usu.email}"></td>
 								<td th:text="${usu.password}"></td>
+								<td> <span th:if="${usu.estadoRegistro}">Activo</span>
+									<span th:unless="${usu.estadoRegistro}">Inactivo</span>
+								</td>
 								<td><a th:href="@{/editarusuario/}+ ${usu.idUsuario}" class="btn btn-outline-primary"><i
 											class="fa fa-edit"></i></a>
 									<a th:href="@{/eliminarusuario/}+ ${usu.idUsuario}" class="btn btn-outline-danger"
