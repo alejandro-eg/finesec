@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FINESEC | Fundación Pro Integración Educativa y Social
 	del Ecuador</title>
-
+<link rel="icon" th:href="@{/themes_AdminLTE/dist/img/logofinesec.png}" type="image/png">
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -74,7 +74,7 @@
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<span class="brand-link"> <img
-				th:src="@{themes_AdminLTE/dist/img/logofinesec.png}"
+				th:src="@{/themes_AdminLTE/dist/img/logofinesec.png}"
 				alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
 				style="opacity: .8"> <span
 				class="brand-text font-weight-light">Finesec</span>
@@ -85,7 +85,7 @@
 				<!-- Sidebar user (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
-						<img th:src="@{themes_AdminLTE/dist/img/usuario.png}"
+						<img th:src="@{/themes_AdminLTE/dist/img/usuario.png}"
 							class="img-circle elevation-2" alt="User Image">
 					</div>
 					<div class="info">
@@ -130,7 +130,7 @@
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>Nuevo Pictograma</p>
 								</a></li>
-								<li class="nav-item"><a th:href="pictogramas"
+								<li class="nav-item"><a th:href="@{/pictogramas}"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>Lista de Pictogramas</p>
 								</a></li>
