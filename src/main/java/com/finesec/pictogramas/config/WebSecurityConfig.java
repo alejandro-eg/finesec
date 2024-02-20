@@ -33,6 +33,7 @@ import jakarta.persistence.Convert;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+	
 	@Autowired
 	private IUsuariosRepository repo;
 
@@ -48,9 +49,7 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/login", "/index").permitAll()
-				//.requestMatchers("/admin/**").hasRole("ADMIN") 
-	            //.requestMatchers("/profesor/**").hasRole("PROFESOR")
+				.requestMatchers("/login", "/index","/olvide-contrasenia").permitAll()
 				.anyRequest().authenticated()
 			)
 			.formLogin((form) -> form
