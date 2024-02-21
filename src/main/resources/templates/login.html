@@ -27,15 +27,23 @@
 
 							<div th:if="${param.logout}" class="alert alert-info">Has
 								finalizado sesión.</div>
+							<div th:if="${alerta2}" class="alert alert-danger" role="alert">
+								<strong th:text="${alerta2}"></strong>
+							</div>
+							<div th:if="${alerta3}" class="alert alert-success" role="alert">
+								<strong th:text="${alerta3}"></strong>
+							</div>
 							<form th:action="@{/login}" method="post">
 
 								<div class="form-group mb-4">
 									<input type="email" id="email"
-										class="form-control form-control" placeholder="Email" name="username" />
+										class="form-control form-control" placeholder="Email"
+										name="username" />
 								</div>
 								<div class="form-group mb-4">
 									<input type="password" id="password"
-										class="form-control form-control" name="password"  placeholder="Contraseña" />
+										class="form-control form-control" name="password"
+										placeholder="Contraseña" />
 								</div>
 
 								<button class="btn btn-primary btn-lg btn-block" type="submit">Iniciar
@@ -58,25 +66,30 @@
 		</div>
 	</section>
 
-<script>
-    document.getElementById('forgotPasswordBtn').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+	<script>
+		document
+				.getElementById('forgotPasswordBtn')
+				.addEventListener(
+						'click',
+						function(event) {
+							event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
 
-        var emailInput = document.getElementById('email').value;
+							var emailInput = document.getElementById('email').value;
 
-        if (emailInput && validateEmail(emailInput)) {
-            // Si el correo electrónico es válido, redirigir a la página de cambio de contraseña
-            window.location.href = "/olvide-contrasenia?email=" + encodeURIComponent(emailInput);
-        } else {
-            // Si el correo electrónico no es válido, mostrar un mensaje de alerta
-            alert("Por favor, ingrese un correo electrónico válido.");
-        }
-    });
+							if (emailInput && validateEmail(emailInput)) {
+								// Si el correo electrónico es válido, redirigir a la página de cambio de contraseña
+								window.location.href = "/olvide-contrasenia?email="
+										+ encodeURIComponent(emailInput);
+							} else {
+								// Si el correo electrónico no es válido, mostrar un mensaje de alerta
+								alert("Por favor, ingrese un correo electrónico válido.");
+							}
+						});
 
-    function validateEmail(email) {
-        var re = /\S+@\S+\.\S+/;
-        return re.test(email);
-    }
-</script>
+		function validateEmail(email) {
+			var re = /\S+@\S+\.\S+/;
+			return re.test(email);
+		}
+	</script>
 </body>
 </html>

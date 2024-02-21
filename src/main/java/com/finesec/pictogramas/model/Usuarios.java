@@ -41,6 +41,14 @@ public class Usuarios implements Serializable {
 	@Column(name = "user_identificacion",length = 15)
 	private String ci;
 	private Boolean estadoRegistro;//estado_registro
+	//Variables de seguridad
+	
+	private int idpreguntaUno;
+	private int idpreguntaDos;
+	private int idpreguntaTres;
+	private String preguntaUno;
+	private String preguntaDos;
+	private String preguntaTres;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)

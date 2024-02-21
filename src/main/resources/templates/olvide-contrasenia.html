@@ -1,99 +1,207 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Recuperar Contraseña (v2)</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa; /* fondo gris claro */
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AdminLTE 3 | Recuperar Contraseña (v2)</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+body {
+	background-color: #f8f9fa; /* fondo gris claro */
+}
 
-        .center-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+.center-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
 
-        .login-box {
-            width: 350px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
+.login-box {
+	width: 500px;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
 
-        .card {
-            border: none;
-            border-radius: 10px;
-        }
+.card {
+	border: none;
+	border-radius: 10px;
+}
 
-        .card-header {
-            background-color: #8300e9; /* encabezado azul */
-            color: #fff; /* texto blanco */
-            border-radius: 10px 10px 0 0;
-        }
+.card-header {
+	background-color: #8300e9; /* encabezado azul */
+	color: #fff; /* texto blanco */
+	border-radius: 10px 10px 0 0;
+}
 
-        .btn-primary {
-            background-color: #8300e9; /* botón azul */
-            border: none;
-        }
+.btn-primary {
+	background-color: #8300e9; /* botón azul */
+	border: none;
+}
 
-        .btn-primary:hover {
-            background-color: #0056b3; /* azul más oscuro al pasar el mouse */
-        }
-    </style>
+.btn-primary:hover {
+	background-color: #0056b3; /* azul más oscuro al pasar el mouse */
+}
+</style>
 </head>
 <body>
-    <div class="center-container">
-        <div class="login-box">
-            <div class="card card-outline card-primary">
-                <div class="card-header text-center">
-                    <h3 class="mb-0">
-                        <b>Cambiar</b>Contraseña
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <p class="login-box-msg">Estás a un paso de establecer tu nueva contraseña. Recupera tu contraseña ahora.</p>
-                    <form th:action="@{/cambiar-contrasenia}" th:object="${nuevoUsuario}" method="post" id="cambiarContraseniaForm">
-                        <input type="hidden" id="email" name="email" th:value="${email}" />
-                        <input type="hidden" id="password" name="password" />
-                        <p>Correo electrónico: <span id="emailUsuario" th:text="${email}"></span></p>
-                        <div class="input-group mb-3">
-                            <input type="password" class="form-control" id="nuevaContrasenia" name="nuevaContrasenia" placeholder="Nueva Contraseña">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="password" class="form-control" id="confirmarContrasenia" placeholder="Confirmar Nueva Contraseña">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <button type="submit" id="cambiarContraseniaBtn" class="btn btn-primary btn-block">Cambiar Contraseña</button>
-                            </div>
-                        </div>
-                    </form>
-                    <p class="mt-3 mb-1"><a th:href="@{/login}" class="text-center">Volver al Inicio de Sesión</a></p>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </div>
-    </div>
-    <!-- /.center-container -->
+	<div class="center-container">
+		<div class="login-box">
+			<div class="card card-outline card-primary">
+				<div class="card-header text-center">
+					<h3 class="mb-0">
+						<b>Cambiar</b>Contraseña
+					</h3>
+				</div>
+				<div class="card-body">
+					<p class="login-box-msg">Estás a un paso de establecer tu nueva
+						contraseña. Recupera tu contraseña ahora.</p>
+					<form th:action="@{/cambiar-contrasenia}"
+						th:object="${nuevoUsuario}" method="post"
+						id="cambiarContraseniaForm">
+						<input type="hidden" id="email" name="email" th:value="${email}" />
+						<input type="hidden" id="password" name="password" /> <input
+							type="hidden" id="r1" name="respuesta1" th:value="${respuesta1}" />
+						<input type="hidden" id="r2" name="respuesta2"
+							th:value="${respuesta2}" /> <input type="hidden" id="r3"
+							name="respuesta3" th:value="${respuesta3}" />
 
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+						<p>
+							Correo electrónico: <span id="emailUsuario" th:text="${email}"></span>
+						</p>
+						<div class="form-group">
+							<label for="pregunta1" th:text="${pregunta1}"></label> <input
+								type="text" class="form-control" id="pregunta1" name="pregunta1"
+								placeholder="Respuesta a la pregunta 1" required>
+						</div>
+						<div class="form-group">
+							<label for="pregunta2" th:text="${pregunta2}"></label> <input
+								type="text" class="form-control" id="pregunta2" name="pregunta2"
+								placeholder="Respuesta a la pregunta 2" required>
+						</div>
+						<div class="form-group">
+							<label for="pregunta3" th:text="${pregunta3}"></label> <input
+								type="text" class="form-control" id="pregunta3" name="pregunta3"
+								placeholder="Respuesta a la pregunta 3" required>
+						</div>
+
+						<div class="row" id="contraseniaInputs" style="display: none;">
+							<div class="col-12">
+								<strong>Ingrese su nueva contraseña:</strong> <small
+									id="passwordHelpBlock" class="form-text text-muted"> La
+									contraseña debe tener al menos 8 caracteres y debe incluir al
+									menos una letra mayúscula, una letra minúscula, un número y un
+									carácter especial. </small>
+								<div class="input-group mb-3">
+
+									<input type="password" class="form-control"
+										id="nuevaContrasenia" name="nuevaContrasenia"
+										placeholder="Nueva Contraseña" required minlength="8"
+										pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span class="fas fa-lock"></span>
+										</div>
+									</div>
+								</div>
+								<div class="input-group mb-3">
+									<input type="password" class="form-control"
+										id="confirmarContrasenia" name="confirmarContrasenia"
+										placeholder="Confirmar Nueva Contraseña" required
+										minlength="8"
+										pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span class="fas fa-lock"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div th:if="${alerta2}" class="alert alert-danger" role="alert">
+							<strong th:text="${alerta2}"></strong>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<button type="button" id="validarPreguntasBtn"
+									class="btn btn-primary btn-block">Validar Respuestas</button>
+							</div>
+						</div>
+						<div class="row mt-2">
+							<div class="col-12">
+								<button type="submit" id="cambiarContraseniaBtn"
+									class="btn btn-primary btn-block" style="display: none;">Cambiar
+									Contraseña</button>
+							</div>
+						</div>
+					</form>
+					<p class="mt-3 mb-1">
+						<a th:href="@{/login}" class="text-center">Volver al Inicio de
+							Sesión</a>
+					</p>
+				</div>
+				<!-- /.card-body -->
+			</div>
+			<!-- /.card -->
+		</div>
+	</div>
+	<!-- /.center-container -->
+
+	<!-- Bootstrap JS -->
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$('#validarPreguntasBtn')
+									.click(
+											function() {
+												// Obtener las respuestas a las preguntas
+												var respuesta1 = $('#pregunta1')
+														.val();
+												var respuesta2 = $('#pregunta2')
+														.val();
+												var respuesta3 = $('#pregunta3')
+														.val();
+
+												var respuestaCorrecta1 = $(
+														'#r1').val();
+												var respuestaCorrecta2 = $(
+														'#r2').val();
+												var respuestaCorrecta3 = $(
+														'#r3').val();
+
+												console.log('1'
+														+ respuestaCorrecta1);
+												// Validar las respuestas
+												if (respuesta1 === respuestaCorrecta1
+														&& respuesta2 === respuestaCorrecta2
+														&& respuesta3 === respuestaCorrecta3) {
+													// Si las respuestas son correctas, mostrar los campos de contraseña
+													$('#contraseniaInputs')
+															.show();
+													$('#cambiarContraseniaBtn')
+															.show();
+												} else {
+													// Si las respuestas son incorrectas, mostrar un mensaje de error
+													alert('Respuestas incorrectas. Por favor, inténtalo de nuevo.');
+													$('#contraseniaInputs')
+															.hide();
+													$('#cambiarContraseniaBtn')
+															.hide();
+
+												}
+											});
+						});
+	</script>
 </body>
 </html>
