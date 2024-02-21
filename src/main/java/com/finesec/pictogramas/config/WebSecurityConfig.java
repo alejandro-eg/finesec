@@ -49,7 +49,7 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/login", "/index","/olvide-contrasenia").permitAll()
+				.requestMatchers("/login", "/index","/olvide-contrasenia", "/cambiar-contrasenia").permitAll()
 				.anyRequest().authenticated()
 			)
 			.formLogin((form) -> form
@@ -68,27 +68,6 @@ public class WebSecurityConfig {
 		return userLogin -> {
 			Usuarios usuario = repo.findByEmail(userLogin);
 
-			//SuperAdmin
-			Usuarios superAdmin = new Usuarios();
-		    superAdmin.setEmail("admin@mail.com");
-		    superAdmin.setPassword("123123");
-		    superAdmin.setNombres("Super");
-		    List<GrantedAuthority> authorities2 = new ArrayList<>();
-		    
-		    if(superAdmin.getRol() == null) {
-		    	Roles superRol = new Roles();
-		    	superRol.setIdRol(1);
-		    	superAdmin.setRol(superRol);
-		    	authorities2.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-		    }else {
-		    	authorities2.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-		    }
-		    
-		    
-		    System.out.println("Usuario recuperado de la base de datos: " + superAdmin.getEmail());
-			System.out.println("Contraseña recuperada de la base de datos: " + superAdmin.getPassword());
-			System.out.println("Usuario con sesion: " + superAdmin.getNombres());
-			
 			if (usuario != null) {
 				List<GrantedAuthority> authorities = new ArrayList<>();
 
@@ -108,8 +87,7 @@ public class WebSecurityConfig {
 				    if ("Profesor".equals(rol.getNombre())) {
 				        System.out.println("Es profesor");
 				        authorities.add(new SimpleGrantedAuthority("ROLE_PROFESOR"));
-				    }
-				    		    
+				    }		    
 				}
 
 				return User.builder()
@@ -119,12 +97,7 @@ public class WebSecurityConfig {
 						.build();
 			} else {
 				System.out.println("Usuario");
-				//throw new UsernameNotFoundException("Usuario no encontrado: " + userLogin);
-				return User.builder()
-						.username(superAdmin.getEmail())
-						.password(passwordEncoder().encode(superAdmin.getPassword()))
-						.authorities(authorities2)
-						.build();
+				throw new UsernameNotFoundException("Usuario no encontrado: " + userLogin);
 			}
 		};
 	}
