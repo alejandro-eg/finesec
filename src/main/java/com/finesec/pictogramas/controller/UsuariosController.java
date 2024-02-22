@@ -1,7 +1,8 @@
 package com.finesec.pictogramas.controller;
  
 import java.util.List;
- 
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +43,7 @@ public class UsuariosController {
 		return "/usuario/listarusuario"; //ruta fisica de la pagina web
 	}
 	
+	/*
 	@GetMapping("/nuevou") //url
 	public String insertarUsuario(Model model) {
 		nuevoUsuario = new Usuarios();
@@ -53,6 +55,25 @@ public class UsuariosController {
 		model.addAttribute("listaRol", listaRoles);
 		model.addAttribute("listaPreguntas", listaPreguntasSeguridad);
 		return "/usuario/nuevousario"; //ruta fisica de la pagina web
+	}*/
+	
+	
+	@GetMapping("/nuevou") //url
+	public String insertarUsuario(Model model) {
+	    nuevoUsuario = new Usuarios();
+	    editMode = false;
+	    System.out.println("Directo a nuevo usuario" + editMode);
+	    
+	    // Obtener la lista de roles con estado true
+	    List<Roles> listaRoles = servicioRol.ListarRoles().stream()
+	                                .filter(rol -> rol.getEstado() != null && rol.getEstado())
+	                                .collect(Collectors.toList());
+	    
+	    List<PreguntasSeguridad> listaPreguntasSeguridad = servicioPreguntasSeguridad.ListarPreguntasSeguridad();
+	    model.addAttribute("nuevo", nuevoUsuario);//método de ejecución al leer la url
+	    model.addAttribute("listaRol", listaRoles);
+	    model.addAttribute("listaPreguntas", listaPreguntasSeguridad);
+	    return "/usuario/nuevousario"; //ruta fisica de la pagina web
 	}
 	
 	@PostMapping("/guardarusuario")
