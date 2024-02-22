@@ -13,11 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finesec.pictogramas.model.CategoriaPictograma;
 import com.finesec.pictogramas.model.Pictogramas;
-import com.finesec.pictogramas.model.Roles;
 import com.finesec.pictogramas.service.ICategoriaPictogramaService;
 import com.finesec.pictogramas.service.IPictogramaService;
-import com.finesec.pictogramas.service.IRolService;
-
 @Controller
 public class PictogramasController {
 	@Autowired

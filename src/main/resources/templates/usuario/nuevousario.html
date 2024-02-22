@@ -75,16 +75,20 @@
 						<label for="password" class="form-label">Password</label>
 						<input type="password" th:field="*{password}" th:readonly="${editMode}" class="form-control" id="password">
 					</div>
+					
+					<input type="hidden" th:field="*{idUsuario}">
+					
 					<div class="col-md-6">
 						<label for="exampleSelect" class="form-label">Rol</label>
-						<select class="form-select form-input-custom" id="exampleSelect" aria-label="Default select example" th:field="*{rol}">
+						<select class="form-select form-input-custom" aria-label="Default select example" th:field="*{rol}">
 							<option value="" selected>Seleccione</option>
-							<option th:each="rol: ${listaRol}" th:value="${rol.idRol}" th:text="${rol.nombre}"
-								th:selected="${rolSeleccionado == rol.idRol}"></option>
+							<option th:each="rol: ${listaRol}" th:value="${rol.idRol}" th:text="${rol.nombre}" th:selected="${rolSeleccionado == rol.idRol}">
+							</option>
 						</select>
 					</div>
 				</div>
-
+				
+				
 				<div class="row mb-3">
 					<div class="col-md-6 form-check">
 						<input type="checkbox" th:field="*{estadoRegistro}" class="form-check-input" id="exampleCheck1">

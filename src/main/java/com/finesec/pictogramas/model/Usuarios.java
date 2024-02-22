@@ -14,7 +14,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -48,6 +47,6 @@ public class Usuarios implements Serializable {
 	private Roles rol;
 	
 	/*@OneToMany(cascade = CascadeType.ALL, mappedBy ="usuarios")
-	private List<AsignacionPictograma> asPictogramas = new ArrayList<>();*/
+	private List<Roles> asUsuarios = new ArrayList<>();*/
 
 }

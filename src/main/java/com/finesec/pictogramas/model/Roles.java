@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +26,7 @@ public class Roles implements Serializable{
 	private String descripcion;
 	private Boolean estado;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy ="rol")
+	@OneToMany(mappedBy ="rol", cascade = CascadeType.ALL)
 	private List<Usuarios> usuarios = new ArrayList<>();
 	
 	@Override

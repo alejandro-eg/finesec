@@ -84,14 +84,15 @@ public class UsuariosController {
 
 	
 	@GetMapping("/editarusuario/{idUsuario}")
-	public String editarUsuario(@PathVariable("idUsuario") int idUsuario, Model model) {
+	public String editarUsuario(@PathVariable("idUsuario") int idUsuario, @RequestParam("idRol") int idRol, Model model) {
 	    Usuarios recuperadoDB = servicioUsuarios.findByIdUsuario(idUsuario);
 	    List<Roles> listaRoles = servicioRol.ListarRoles();
 	    model.addAttribute("nuevo", recuperadoDB);
 	    model.addAttribute("listaRol", listaRoles);
+	    model.addAttribute("rolSeleccionado", idRol);
 	    editMode = true;
         model.addAttribute("editMode", editMode);
-	    /*model.addAttribute("rolSeleccionado", rolId);*/
+	    
 	    return "/usuario/nuevousario";
 	}
 	@GetMapping("/eliminarusuario/{idUsuario}")
