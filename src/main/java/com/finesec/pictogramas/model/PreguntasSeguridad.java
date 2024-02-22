@@ -17,4 +17,9 @@ public class PreguntasSeguridad  implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPregunta;//id_rol
 	private String pregunta;
+	
+	@Override
+    public String toString() {
+        return this.pregunta; // Devuelve el nombre del rol
+    }
 }

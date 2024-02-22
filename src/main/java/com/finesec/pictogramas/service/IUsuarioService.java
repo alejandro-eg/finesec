@@ -18,4 +18,6 @@ public interface IUsuarioService {
 	//metodo para buscar
 	public Usuarios buscar(String nombres);
 	
+	public void actualizarUsuario(int idUsuario, Usuarios usuarioActualizado);
+	
 }

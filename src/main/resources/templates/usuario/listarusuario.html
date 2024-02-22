@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{/plantilla/plantillaUI}">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Lista de Usuarios</title>
-	<!-- Google Font: Source Sans Pro -->
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	<!-- Font Awesome -->
-	<link rel="stylesheet" th:href="@{themes_AdminLTE/plugins/fontawesome-free/css/all.min.css}">
-	<!-- Estilo del tema -->
-	<link rel="stylesheet" th:href="@{themes_AdminLTE/dist/css/adminlte.css}">
+<meta charset="UTF-8">
+<title>Lista de Usuarios</title>
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	th:href="@{themes_AdminLTE/plugins/fontawesome-free/css/all.min.css}">
+<!-- Estilo del tema -->
+<link rel="stylesheet"
+	th:href="@{themes_AdminLTE/dist/css/adminlte.css}">
 
-	<style>
-		.table-blue thead th {
-			background-color: rgba(131, 0, 233, 0.54) !important
-		}
+<style>
+.table-blue thead th {
+	background-color: rgba(131, 0, 233, 0.54) !important
+}
 
-		body {
-			background-image: url('https://elsumario.com/wp-content/uploads/2015/07/manitas.jpg');
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-attachment: fixed;
-			/* Fija la imagen de fondo para que no se desplace con el contenido */
-		}
-	</style>
+body {
+	background-image:
+		url('https://elsumario.com/wp-content/uploads/2015/07/manitas.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	/* Fija la imagen de fondo para que no se desplace con el contenido */
+}
+</style>
 </head>
 
 <body>
@@ -33,12 +37,12 @@
 		<br> <br>
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h5 class="m-0 font-weight-bold text-primary">Lista de
-					Usuarios</h5>
+				<h5 class="m-0 font-weight-bold text-primary">Lista de Usuarios</h5>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table id="listapictogramas" class="table table-bordered table-striped table-blue">
+					<table id="listapictogramas"
+						class="table table-bordered table-striped table-blue">
 						<thead>
 							<tr>
 								<th>Nombre</th>
@@ -66,16 +70,17 @@
 								<td th:if="${usu.rol != null}" th:text="${usu.rol.nombre}"></td-->
 								<td th:text="${usu.email}"></td>
 								<td th:text="${usu.password}"></td>
-								<td> <span th:if="${usu.estadoRegistro}">Activo</span>
-									<span th:unless="${usu.estadoRegistro}">Inactivo</span>
-								</td>
-								<td><a th:href="@{/editarusuario/}+ ${usu.idUsuario}" class="btn btn-outline-primary"><i
-											class="fa fa-edit"></i></a>
-									<a th:href="@{/eliminarusuario/}+ ${usu.idUsuario}" class="btn btn-outline-danger"
-										onclick="return confirm('Esta seguro que desea eliminar el registro?')">
-										<i class="fa fa-trash"></i>
+								<td><span th:if="${usu.estadoRegistro}">Activo</span> <span
+									th:unless="${usu.estadoRegistro}">Inactivo</span></td>
+								<td><a th:href="@{/editarusuario/}+ ${usu.idUsuario}"
+									class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+									<span th:unless="${usu.email == 'super@admin.com'}"> <!-- Muestra el botón de eliminar solo si el correo electrónico no es "super@admin.com" -->
+										<a th:href="@{/eliminarusuario/} + ${usu.idUsuario}"
+										class="btn btn-outline-danger"
+										onclick="return confirm('¿Está seguro que desea eliminar el registro?')">
+											<i class="fa fa-trash"></i>
 									</a>
-								</td>
+								</span></td>
 							</tr>
 						</tbody>
 

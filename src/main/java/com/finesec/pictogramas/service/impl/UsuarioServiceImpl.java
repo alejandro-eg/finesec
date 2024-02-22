@@ -73,5 +73,37 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		// TODO Auto-generated method stub
 		return repo.findByCi(ci);
 	}
+	
+	@Override
+	public void actualizarUsuario(int idUsuario, Usuarios usuarioActualizado) {
+		  System.out.println(idUsuario);
+		    System.out.println(usuarioActualizado);
+	    // Buscar el usuario existente por su ID
+	    Usuarios usuarioExistente = repo.findById(idUsuario).orElse(null);
+	  
+	    
+	    // Verificar si se encontró el usuario
+	    if (usuarioExistente != null) {
+	        // Actualizar los campos del usuario existente con los del usuario actualizado
+	        usuarioExistente.setNombres(usuarioActualizado.getNombres());
+	        usuarioExistente.setApellidos(usuarioActualizado.getApellidos());
+	        usuarioExistente.setDireccion(usuarioActualizado.getDireccion());
+	        usuarioExistente.setTelefono(usuarioActualizado.getTelefono());
+	        usuarioExistente.setEstadoRegistro(usuarioActualizado.getEstadoRegistro());
+	        usuarioExistente.setIdpreguntaUno(usuarioActualizado.getIdpreguntaUno());
+	        usuarioExistente.setIdpreguntaDos(usuarioActualizado.getIdpreguntaDos());
+	        usuarioExistente.setIdpreguntaTres(usuarioActualizado.getIdpreguntaTres());
+	        usuarioExistente.setPreguntaUno(usuarioActualizado.getPreguntaUno());
+	        usuarioExistente.setPreguntaDos(usuarioActualizado.getPreguntaDos());
+	        usuarioExistente.setPreguntaTres(usuarioActualizado.getPreguntaTres());
+	        usuarioExistente.setRol(usuarioActualizado.getRol());
+
+	        // Guardar los cambios en la base de datos
+	         repo.save(usuarioExistente);
+	    } else {
+	        // Manejar el caso en el que el usuario no existe
+	        // Aquí puedes lanzar una excepción, registrar un mensaje de error, etc.
+	    }
+	}
 
 }

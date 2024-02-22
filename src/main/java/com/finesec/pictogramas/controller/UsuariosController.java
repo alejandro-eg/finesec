@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.finesec.pictogramas.model.PreguntasSeguridad;
 import com.finesec.pictogramas.model.Roles;
 import com.finesec.pictogramas.model.Usuarios;
+import com.finesec.pictogramas.service.IPreguntasSeguridadService;
 import com.finesec.pictogramas.service.IRolService;
 import com.finesec.pictogramas.service.IUsuarioService;
 
@@ -25,12 +27,16 @@ public class UsuariosController {
 	private IUsuarioService servicioUsuarios;
 	private Usuarios nuevoUsuario;
 	private Boolean editMode = false;
+	private int idUsuarioSeleccionado = 0;
 	
 	@Autowired
     private IRolService servicioRol;
+	@Autowired
+    private IPreguntasSeguridadService servicioPreguntasSeguridad;
 	@GetMapping("/usuarios") //url
 	public String listarUsuarios(Model model) { //metodo de ejecucion al leer la url
 		List<Usuarios> datosUsuariosDB= servicioUsuarios.ListarUsuario();
+		editMode = false;
 		model.addAttribute("ListaU", datosUsuariosDB);
 		model.addAttribute("editMode", editMode); // Pasa el modo de edición al modelo
 		return "/usuario/listarusuario"; //ruta fisica de la pagina web
@@ -39,61 +45,69 @@ public class UsuariosController {
 	@GetMapping("/nuevou") //url
 	public String insertarUsuario(Model model) {
 		nuevoUsuario = new Usuarios();
+		editMode = false;
+	    System.out.println("Directo a nuevo usuario"+editMode);
 		List<Roles> listaRoles = servicioRol.ListarRoles();
+		List<PreguntasSeguridad> listaPreguntasSeguridad = servicioPreguntasSeguridad.ListarPreguntasSeguridad();
 		model.addAttribute("nuevo", nuevoUsuario);//método de ejecución al leer la url
 		model.addAttribute("listaRol", listaRoles);
+		model.addAttribute("listaPreguntas", listaPreguntasSeguridad);
 		return "/usuario/nuevousario"; //ruta fisica de la pagina web
 	}
 	
 	@PostMapping("/guardarusuario")
-	public String guardarUsuario(@ModelAttribute("nuevo")Usuarios nuevoUsuario, BindingResult result, Model model) {
-	    Usuarios emailExistente = servicioUsuarios.findByCi(nuevoUsuario.getCi());
-	    Usuarios cedulaExistente = servicioUsuarios.findByEmail(nuevoUsuario.getEmail());
+	public String guardarUsuario(@ModelAttribute("nuevo") Usuarios nuevoUsuario, BindingResult result, Model model) {
+	    // Verificar si el usuario es nuevo o si es una actualización
+		System.out.println("ID USUARIO:"+nuevoUsuario.getIdUsuario());
+		if (!editMode) { // Nuevo usuario (asumiendo que el ID 0 indica un nuevo usuario)
+	        // Verificar si ya existe un usuario con el mismo email o cédula
+	    	System.out.println("Entro a crear el usuario");
 
-	    if (emailExistente != null) {
-	        // Validación condicional para evitar errores en el campo ci cuando estamos en modo de edición
-	        if (!editMode) {
-	            // si el usuario con ese email existe mostrara una alerta
-	            model.addAttribute("alerta", "Ya ha sido creado un usuario con esa cedula, por favor proporciona una nueva");
+	        Usuarios emailExistente = servicioUsuarios.findByEmail(nuevoUsuario.getEmail());
+	        Usuarios cedulaExistente = servicioUsuarios.findByCi(nuevoUsuario.getCi());
+
+	        if (emailExistente != null) {
+	            // Mostrar alerta si ya existe un usuario con el mismo email
+	            model.addAttribute("alerta", "Ya ha sido creado un usuario con ese email, por favor proporciona uno nuevo");
 	            model.addAttribute("listaRol", servicioRol.ListarRoles());
-	            editMode = false;
-	            model.addAttribute("editMode", editMode);
+	            model.addAttribute("listaPreguntas", servicioPreguntasSeguridad.ListarPreguntasSeguridad());
+	            return "/usuario/nuevousario";
+	        } else if (cedulaExistente != null) {
+	            // Mostrar alerta si ya existe un usuario con la misma cédula
+	            model.addAttribute("alerta2", "Ya ha sido creado un usuario con esa cédula, por favor proporciona una nueva");
+	            model.addAttribute("listaRol", servicioRol.ListarRoles());
+	            model.addAttribute("listaPreguntas", servicioPreguntasSeguridad.ListarPreguntasSeguridad());
 	            return "/usuario/nuevousario";
 	        }
-	    } else if (cedulaExistente != null) {
-	    	
-	    	if (!editMode) {
-	    		// si el usuario con esa cedula existe mostrara una alerta
-		        model.addAttribute("alerta2", "Ya ha sido creado un usuario con ese email, por favor proporciona una nueva");
-		        model.addAttribute("listaRol", servicioRol.ListarRoles());
-		        editMode = false;
-		        model.addAttribute("editMode", editMode);
-		        return "/usuario/nuevousario";
-			}
-	        
+
+	        // Guardar el nuevo usuario
+	        servicioUsuarios.insertarUsuario(nuevoUsuario);
+	    } else { // Usuario existente, por lo tanto es una actualización
+	    	System.out.println("Entro a actualizar");
+	        // Actualizar el usuario existente
+	        servicioUsuarios.actualizarUsuario(idUsuarioSeleccionado, nuevoUsuario);
 	    }
-
-	    servicioUsuarios.insertarUsuario(nuevoUsuario);
-	    
-	    // Reinicia editMode
 	    editMode = false;
-	    model.addAttribute("editMode", editMode);
-
+        model.addAttribute("editMode", editMode);
+	    // Redirigir a la página de usuarios después de guardar o actualizar
 	    return "redirect:/usuarios";
 	}
 
-	
 	@GetMapping("/editarusuario/{idUsuario}")
 	public String editarUsuario(@PathVariable("idUsuario") int idUsuario, Model model) {
 	    Usuarios recuperadoDB = servicioUsuarios.findByIdUsuario(idUsuario);
 	    List<Roles> listaRoles = servicioRol.ListarRoles();
+	    List <PreguntasSeguridad> listaPreguntasSeguridad = servicioPreguntasSeguridad.ListarPreguntasSeguridad();
 	    model.addAttribute("nuevo", recuperadoDB);
 	    model.addAttribute("listaRol", listaRoles);
+	    model.addAttribute("listaPreguntas", listaPreguntasSeguridad);
 	    editMode = true;
+	    idUsuarioSeleccionado = idUsuario;
         model.addAttribute("editMode", editMode);
-	    /*model.addAttribute("rolSeleccionado", rolId);*/
+	    System.out.println("Aplasto en editar: "+ editMode);
 	    return "/usuario/nuevousario";
 	}
+	
 	@GetMapping("/eliminarusuario/{idUsuario}")
 	public String eliminarUsuario(@PathVariable(value="idUsuario")int idUsuario) {
 		servicioUsuarios.eliminarUsuario(idUsuario);

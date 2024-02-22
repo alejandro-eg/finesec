@@ -30,24 +30,35 @@ public class Usuarios implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUsuario;//idUsuario
+	
 	private String nombres;
 	private String apellidos;
 	private String direccion;
 	private String telefono;
+	
 	//Variables para inicio de sesión
 	@Column(name = "user_correo")//me permite cambiar de nombre el atributo 
 	private String email;
+	
 	private String password;
+	
 	@Column(name = "user_identificacion",length = 15)
 	private String ci;
+	
 	private Boolean estadoRegistro;//estado_registro
 	//Variables de seguridad
 	
-	private int idpreguntaUno;
-	private int idpreguntaDos;
-	private int idpreguntaTres;
+	@Column(name = "idpregunta_uno")
+	private Integer idpreguntaUno;
+	@Column(name = "idpregunta_dos")
+	private Integer idpreguntaDos;
+	@Column(name = "idpregunta_tres")
+	private Integer idpreguntaTres;
+	@Column(name = "pregunta_uno")
 	private String preguntaUno;
+	@Column(name = "pregunta_dos")
 	private String preguntaDos;
+	@Column(name = "pregunta_tres")
 	private String preguntaTres;
 	
 	
