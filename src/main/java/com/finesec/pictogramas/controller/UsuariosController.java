@@ -92,6 +92,7 @@ public class UsuariosController {
 	            model.addAttribute("alerta", "Ya ha sido creado un usuario con ese email, por favor proporciona uno nuevo");
 	            model.addAttribute("listaRol", servicioRol.ListarRoles());
 	            model.addAttribute("listaPreguntas", servicioPreguntasSeguridad.ListarPreguntasSeguridad());
+	            System.out.println("ENTRO AQUIIIIII");
 	            return "/usuario/nuevousario";
 	        } else if (cedulaExistente != null) {
 	            // Mostrar alerta si ya existe un usuario con la misma cédula
@@ -117,6 +118,7 @@ public class UsuariosController {
 	@GetMapping("/editarusuario/{idUsuario}")
 	public String editarUsuario(@PathVariable("idUsuario") int idUsuario, Model model) {
 	    Usuarios recuperadoDB = servicioUsuarios.findByIdUsuario(idUsuario);
+	    //System.out.println("HolaAAAAAAAAAAAAAAAAAAAAAAA: "+recuperadoDB.getRestriccionRol());
 	    List<Roles> listaRoles = servicioRol.ListarRoles();
 	    List <PreguntasSeguridad> listaPreguntasSeguridad = servicioPreguntasSeguridad.ListarPreguntasSeguridad();
 	    model.addAttribute("nuevo", recuperadoDB);

@@ -20,4 +20,5 @@ public interface IUsuarioService {
 	
 	public void actualizarUsuario(int idUsuario, Usuarios usuarioActualizado);
 	
+	
 }

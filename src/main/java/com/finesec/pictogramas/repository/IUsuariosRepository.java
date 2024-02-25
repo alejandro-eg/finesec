@@ -19,4 +19,6 @@ public interface IUsuariosRepository extends JpaRepository<Usuarios, Integer> {
 	List<Usuarios> findByNombres(String nombres);
 
 	List<Usuarios> findByRol_IdRol(Integer rolId);
+	
+	
 }

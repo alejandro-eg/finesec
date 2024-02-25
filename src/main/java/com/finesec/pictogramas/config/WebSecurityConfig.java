@@ -74,10 +74,10 @@ public class WebSecurityConfig {
 				System.out.println("Usuario recuperado de la base de datos2: " + usuario.getEmail());
 				System.out.println("Contraseña recuperada de la base de datos2: " + usuario.getPassword());
 				System.out.println("Usuario con sesion activa: " + usuario.getNombres());
-				
+				System.out.println("Usuario REESTRICCION ROL: " + usuario.getRestriccionRol());
 						
 				Roles rol = usuario.getRol();
-				
+				/*
 				if (rol != null) {
 				    if ("Administrador".equals(rol.getNombre())) {
 				        System.out.println("Es admin");
@@ -88,7 +88,39 @@ public class WebSecurityConfig {
 				        System.out.println("Es profesor");
 				        authorities.add(new SimpleGrantedAuthority("ROLE_PROFESOR"));
 				    }		    
-				}
+				}*/
+
+				Boolean restriccionUser = usuario.getRestriccionUsuario();
+				Boolean restriccionRol = usuario.getRestriccionRol();
+				Boolean restriccionPictograma = usuario.getRestriccionPictograma();
+				Boolean restriccionCategoria = usuario.getRestriccionCategoria();
+				
+				System.out.println("USUARIO"+restriccionUser);
+				System.out.println("ROL"+restriccionRol);
+				System.out.println("PICTP"+restriccionPictograma);
+				System.out.println("CATEGORIA"+restriccionCategoria);
+				
+				/*
+				if (rol != null) {
+				    if (restriccionRol) {
+				        System.out.println("Acceso a roles");
+				        authorities.add(new SimpleGrantedAuthority("ROLE_ROLES"));
+				    } 
+				    
+				    if (restriccionUser) {
+				        System.out.println("Acceso a usuarios");
+				        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+				    }  
+				    
+				    if (restriccionPictograma) {
+				        System.out.println("Acceso a pictogramas");
+				        authorities.add(new SimpleGrantedAuthority("ROLE_PICTO"));
+				    }
+				    if (restriccionCategoria) {
+				        System.out.println("Acceso a categorias");
+				        authorities.add(new SimpleGrantedAuthority("ROLE_CAT"));
+				    }	
+				}*/
 
 				return User.builder()
 						.username(usuario.getEmail())

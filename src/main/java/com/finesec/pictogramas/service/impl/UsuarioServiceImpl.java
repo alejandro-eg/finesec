@@ -97,7 +97,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	        usuarioExistente.setPreguntaDos(usuarioActualizado.getPreguntaDos());
 	        usuarioExistente.setPreguntaTres(usuarioActualizado.getPreguntaTres());
 	        usuarioExistente.setRol(usuarioActualizado.getRol());
-
+	        usuarioExistente.setRestriccionRol(usuarioActualizado.getRestriccionRol());
+	        usuarioExistente.setRestriccionPictograma(usuarioActualizado.getRestriccionPictograma());
+	        usuarioExistente.setRestriccionCategoria(usuarioActualizado.getRestriccionCategoria());
+	        usuarioExistente.setRestriccionUsuario(usuarioActualizado.getRestriccionUsuario());
+	        
 	        // Guardar los cambios en la base de datos
 	         repo.save(usuarioExistente);
 	    } else {
@@ -105,5 +109,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	        // Aquí puedes lanzar una excepción, registrar un mensaje de error, etc.
 	    }
 	}
+
 
 }
