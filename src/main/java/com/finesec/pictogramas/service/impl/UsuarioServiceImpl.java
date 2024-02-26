@@ -76,8 +76,9 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	
 	@Override
 	public void actualizarUsuario(int idUsuario, Usuarios usuarioActualizado) {
-		  System.out.println(idUsuario);
-		    System.out.println(usuarioActualizado);
+		  
+		System.out.println(idUsuario);
+		System.out.println(usuarioActualizado);
 	    // Buscar el usuario existente por su ID
 	    Usuarios usuarioExistente = repo.findById(idUsuario).orElse(null);
 	  
@@ -97,13 +98,17 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	        usuarioExistente.setPreguntaDos(usuarioActualizado.getPreguntaDos());
 	        usuarioExistente.setPreguntaTres(usuarioActualizado.getPreguntaTres());
 	        usuarioExistente.setRol(usuarioActualizado.getRol());
-
+	        usuarioExistente.setRestriccionRol(usuarioActualizado.getRestriccionRol());
+	        usuarioExistente.setRestriccionPictograma(usuarioActualizado.getRestriccionPictograma());
+	        usuarioExistente.setRestriccionCategoria(usuarioActualizado.getRestriccionCategoria());
+	        usuarioExistente.setRestriccionUsuario(usuarioActualizado.getRestriccionUsuario());
+	        
 	        // Guardar los cambios en la base de datos
 	         repo.save(usuarioExistente);
 	    } else {
 	        // Manejar el caso en el que el usuario no existe
-	        // Aquí puedes lanzar una excepción, registrar un mensaje de error, etc.
 	    }
 	}
+
 
 }

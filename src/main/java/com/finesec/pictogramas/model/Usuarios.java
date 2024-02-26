@@ -46,6 +46,13 @@ public class Usuarios implements Serializable {
 	private String ci;
 	
 	private Boolean estadoRegistro;//estado_registro
+	
+	//parametrizacion menu
+	private Boolean restriccionRol;
+	private Boolean restriccionPictograma;
+	private Boolean restriccionCategoria;
+	private Boolean restriccionUsuario;
+	
 	//Variables de seguridad
 	
 	@Column(name = "idpregunta_uno")
@@ -65,6 +72,8 @@ public class Usuarios implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rol")
 	private Roles rol;
+	
+	
 	
 	/*@OneToMany(cascade = CascadeType.ALL, mappedBy ="usuarios")
 	private List<AsignacionPictograma> asPictogramas = new ArrayList<>();*/

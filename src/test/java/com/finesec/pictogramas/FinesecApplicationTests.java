@@ -42,6 +42,7 @@ class FinesecApplicationTests {
 		Roles nuevoRol = new Roles(); 
 		nuevoRol.setNombre("Administrador");
 		nuevoRol.setDescripcion("Administrador BDD");
+		nuevoRol.setEstado(true);
 		//nuevoRol.setIdRol(1);
 		
 		//servicioRol.insertarRol(nuevoRol);
@@ -51,13 +52,20 @@ class FinesecApplicationTests {
 		nuevoUsr.setApellidos("Pizarra");
 		nuevoUsr.setCi("1725358525");
 		nuevoUsr.setDireccion("Solanda");
-		nuevoUsr.setEmail("jpizarra@mail.com");
+		nuevoUsr.setEmail("test@mail.com");
 		nuevoUsr.setEstadoRegistro(true);
-		//nuevoUsr.setIdUsuario(1);
-		nuevoUsr.setNombres("Jhonathan");
+		nuevoUsr.setIdpreguntaUno(1);
+		nuevoUsr.setIdpreguntaDos(2);
+		nuevoUsr.setIdpreguntaTres(3);
+		nuevoUsr.setNombres("Xavier");
 		nuevoUsr.setPassword("123123");
-		//nuevoUsr.setRol(nuevoRol);
+		nuevoUsr.setPreguntaUno("1");
+		nuevoUsr.setPreguntaDos("2");
+		nuevoUsr.setPreguntaTres("3");
+		nuevoUsr.setRestriccionRol(false);
 		nuevoUsr.setTelefono("0990803129");	
+		//nuevoUsr.setRol(nuevoRol);
+	
 		
 		//servicioUsr.insertarUsuario(nuevoUsr);
 		
