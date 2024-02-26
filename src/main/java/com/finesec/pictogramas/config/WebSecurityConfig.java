@@ -3,9 +3,7 @@ package com.finesec.pictogramas.config;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.sql.DataSource;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,11 +20,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
 import com.finesec.pictogramas.model.Roles;
 import com.finesec.pictogramas.model.Usuarios;
 import com.finesec.pictogramas.repository.IUsuariosRepository;
-
 import jakarta.persistence.Convert;
 
 @Configuration
@@ -71,6 +67,8 @@ public class WebSecurityConfig {
 			if (usuario != null) {
 				List<GrantedAuthority> authorities = new ArrayList<>();
 
+				authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+	            
 				System.out.println("Usuario recuperado de la base de datos2: " + usuario.getEmail());
 				System.out.println("Contraseña recuperada de la base de datos2: " + usuario.getPassword());
 				System.out.println("Usuario con sesion activa: " + usuario.getNombres());
@@ -90,38 +88,7 @@ public class WebSecurityConfig {
 				    }		    
 				}*/
 
-				Boolean restriccionUser = usuario.getRestriccionUsuario();
-				Boolean restriccionRol = usuario.getRestriccionRol();
-				Boolean restriccionPictograma = usuario.getRestriccionPictograma();
-				Boolean restriccionCategoria = usuario.getRestriccionCategoria();
-				
-				System.out.println("USUARIO"+restriccionUser);
-				System.out.println("ROL"+restriccionRol);
-				System.out.println("PICTP"+restriccionPictograma);
-				System.out.println("CATEGORIA"+restriccionCategoria);
-				
-				/*
-				if (rol != null) {
-				    if (restriccionRol) {
-				        System.out.println("Acceso a roles");
-				        authorities.add(new SimpleGrantedAuthority("ROLE_ROLES"));
-				    } 
-				    
-				    if (restriccionUser) {
-				        System.out.println("Acceso a usuarios");
-				        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-				    }  
-				    
-				    if (restriccionPictograma) {
-				        System.out.println("Acceso a pictogramas");
-				        authorities.add(new SimpleGrantedAuthority("ROLE_PICTO"));
-				    }
-				    if (restriccionCategoria) {
-				        System.out.println("Acceso a categorias");
-				        authorities.add(new SimpleGrantedAuthority("ROLE_CAT"));
-				    }	
-				}*/
-
+			
 				return User.builder()
 						.username(usuario.getEmail())
 						.password(passwordEncoder().encode(usuario.getPassword()))

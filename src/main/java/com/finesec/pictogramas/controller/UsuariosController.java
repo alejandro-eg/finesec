@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,13 +37,25 @@ public class UsuariosController {
     private IRolService servicioRol;
 	@Autowired
     private IPreguntasSeguridadService servicioPreguntasSeguridad;
+	
+	
 	@GetMapping("/usuarios") //url
 	public String listarUsuarios(Model model) { //metodo de ejecucion al leer la url
-		List<Usuarios> datosUsuariosDB= servicioUsuarios.ListarUsuario();
-		editMode = false;
-		model.addAttribute("ListaU", datosUsuariosDB);
-		model.addAttribute("editMode", editMode); // Pasa el modo de edición al modelo
-		return "/usuario/listarusuario"; //ruta fisica de la pagina web
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName(); //Obtengo el nombre de usuario (en el security confing se conoce como Name)
+		Usuarios usuario = servicioUsuarios.findByEmail(email);
+		
+		if (usuario != null && !usuario.getRestriccionUsuario()) {
+	        // Si restriccionUsuario es true, redirige a la página de inicio ("/")
+	        return "redirect:/";
+	    } else {
+	    	List<Usuarios> datosUsuariosDB= servicioUsuarios.ListarUsuario();
+			editMode = false;
+			model.addAttribute("ListaU", datosUsuariosDB);
+			model.addAttribute("editMode", editMode); // Pasa el modo de edición al modelo
+			return "/usuario/listarusuario"; //ruta fisica de la pagina web
+	    }
 	}
 	
 	/*
@@ -60,20 +75,31 @@ public class UsuariosController {
 	
 	@GetMapping("/nuevou") //url
 	public String insertarUsuario(Model model) {
-	    nuevoUsuario = new Usuarios();
-	    editMode = false;
-	    System.out.println("Directo a nuevo usuario" + editMode);
-	    
-	    // Obtener la lista de roles con estado true
-	    List<Roles> listaRoles = servicioRol.ListarRoles().stream()
-	                                .filter(rol -> rol.getEstado() != null && rol.getEstado())
-	                                .collect(Collectors.toList());
-	    
-	    List<PreguntasSeguridad> listaPreguntasSeguridad = servicioPreguntasSeguridad.ListarPreguntasSeguridad();
-	    model.addAttribute("nuevo", nuevoUsuario);//método de ejecución al leer la url
-	    model.addAttribute("listaRol", listaRoles);
-	    model.addAttribute("listaPreguntas", listaPreguntasSeguridad);
-	    return "/usuario/nuevousario"; //ruta fisica de la pagina web
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName(); //Obtengo el nombre de usuario (en el security confing se conoce como Name)
+		Usuarios usuario = servicioUsuarios.findByEmail(email);
+		
+		if (usuario != null && !usuario.getRestriccionUsuario()) {
+	        // Si restriccionUsuario es true, redirige a la página de inicio ("/")
+	        return "redirect:/";
+	    } else {
+	    	nuevoUsuario = new Usuarios();
+	 	    editMode = false;
+	 	    System.out.println("Directo a nuevo usuario" + editMode);
+	 	    
+	 	    // Obtener la lista de roles con estado true
+	 	    List<Roles> listaRoles = servicioRol.ListarRoles().stream()
+	 	                                .filter(rol -> rol.getEstado() != null && rol.getEstado())
+	 	                                .collect(Collectors.toList());
+	 	    
+	 	    List<PreguntasSeguridad> listaPreguntasSeguridad = servicioPreguntasSeguridad.ListarPreguntasSeguridad();
+	 	    model.addAttribute("nuevo", nuevoUsuario);//método de ejecución al leer la url
+	 	    model.addAttribute("listaRol", listaRoles);
+	 	    model.addAttribute("listaPreguntas", listaPreguntasSeguridad);
+	 	    return "/usuario/nuevousario"; //ruta fisica de la pagina web
+	    }
+	
 	}
 	
 	@PostMapping("/guardarusuario")
@@ -117,33 +143,61 @@ public class UsuariosController {
 
 	@GetMapping("/editarusuario/{idUsuario}")
 	public String editarUsuario(@PathVariable("idUsuario") int idUsuario, Model model) {
-	    Usuarios recuperadoDB = servicioUsuarios.findByIdUsuario(idUsuario);
-	    //System.out.println("HolaAAAAAAAAAAAAAAAAAAAAAAA: "+recuperadoDB.getRestriccionRol());
-	    List<Roles> listaRoles = servicioRol.ListarRoles();
-	    List <PreguntasSeguridad> listaPreguntasSeguridad = servicioPreguntasSeguridad.ListarPreguntasSeguridad();
-	    model.addAttribute("nuevo", recuperadoDB);
-	    model.addAttribute("listaRol", listaRoles);
-	    model.addAttribute("listaPreguntas", listaPreguntasSeguridad);
-	    editMode = true;
-	    idUsuarioSeleccionado = idUsuario;
-        model.addAttribute("editMode", editMode);
-	    System.out.println("Aplasto en editar: "+ editMode);
-	    return "/usuario/nuevousario";
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName(); //Obtengo el nombre de usuario (en el security confing se conoce como Name)
+		Usuarios usuario = servicioUsuarios.findByEmail(email);
+		
+		if (usuario != null && !usuario.getRestriccionUsuario()) {
+	        // Si restriccionUsuario es true, redirige a la página de inicio ("/")
+	        return "redirect:/";
+	    } else {
+	    	Usuarios recuperadoDB = servicioUsuarios.findByIdUsuario(idUsuario);
+		    List<Roles> listaRoles = servicioRol.ListarRoles();
+		    List <PreguntasSeguridad> listaPreguntasSeguridad = servicioPreguntasSeguridad.ListarPreguntasSeguridad();
+		    model.addAttribute("nuevo", recuperadoDB);
+		    model.addAttribute("listaRol", listaRoles);
+		    model.addAttribute("listaPreguntas", listaPreguntasSeguridad);
+		    editMode = true;
+		    idUsuarioSeleccionado = idUsuario;
+	        model.addAttribute("editMode", editMode);
+		    System.out.println("Aplasto en editar: "+ editMode);
+		    return "/usuario/nuevousario";
+	    }  
 	}
 	
 	@GetMapping("/eliminarusuario/{idUsuario}")
 	public String eliminarUsuario(@PathVariable(value="idUsuario")int idUsuario) {
-		servicioUsuarios.eliminarUsuario(idUsuario);
-		return "redirect:/usuarios";
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName(); //Obtengo el nombre de usuario (en el security confing se conoce como Name)
+		Usuarios usuario = servicioUsuarios.findByEmail(email);
+		
+		if (usuario != null && !usuario.getRestriccionUsuario()) {
+	        // Si restriccionUsuario es true, redirige a la página de inicio ("/")
+	        return "redirect:/";
+	    } else {
+	    	servicioUsuarios.eliminarUsuario(idUsuario);
+			return "redirect:/usuarios";
+	    }  
 	}
 	
 	@GetMapping("/buscarusuarios")
 	public String buscarUsuarios(@RequestParam(name = "nombres", required = false) String nombres,
 	                             @RequestParam(name = "rolId", required = false) Integer rolId,
 	                             Model model) {
-	    List<Usuarios> usuariosEncontrados = servicioUsuarios.buscarUsuarios(nombres, rolId);
-	    model.addAttribute("ListaU", usuariosEncontrados);
-	    return "/usuario/listarusuario";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName(); //Obtengo el nombre de usuario (en el security confing se conoce como Name)
+		Usuarios usuario = servicioUsuarios.findByEmail(email);
+		
+		if (usuario != null && !usuario.getRestriccionUsuario()) {
+	        // Si restriccionUsuario es true, redirige a la página de inicio ("/")
+	        return "redirect:/";
+	    } else {
+	    	List<Usuarios> usuariosEncontrados = servicioUsuarios.buscarUsuarios(nombres, rolId);
+	  	    model.addAttribute("ListaU", usuariosEncontrados);
+	  	    return "/usuario/listarusuario";
+	    }   
 	}
 
 }
