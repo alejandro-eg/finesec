@@ -68,10 +68,10 @@ section {
 }
 
 .finesec-container h2 {
-    color: orange;
+    color: #8300e9;
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     line-height: 1em;
     padding-bottom: 10px;
     font-size: 3em; /* Ajusta este valor según tus necesidades */
@@ -79,32 +79,32 @@ section {
 
 
 .finesec-container p {
-    color: #8300e9; /* Color de letra blanco */
+    color: orange;
     font-family: 'Roboto', sans-serif; /* Tipo de letra Roboto */
     text-align: center; /* Alineación del texto a la izquierda */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombreado gris */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); /* Sombreado gris */
     padding-bottom: 10px;
     line-height: 1em;
     font-size: 2em;
 }
 
 .mission-vision-container h2 {
-    color: orange; /* Color de letra blanco */
+    color:#8300e9;
     font-family: 'Roboto', sans-serif; /* Tipo de letra Roboto */
     text-align: left; /* Centrado del texto */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombreado gris */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); /* Sombreado gris */
     line-height: 1em;
     padding-bottom: 10px;
 }
 
 .mission-vision-container p {
-    color: white; /* Color de letra blanco */
+    color:orange;
     font-family: 'Roboto', sans-serif; /* Tipo de letra Roboto */
     text-align: left; /* Alineación del texto a la izquierda */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombreado gris */
-    padding-bottom: 80px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); /* Sombreado gris */
+    padding-bottom: 10px;
     line-height: 1em;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 
@@ -630,8 +630,8 @@ pre code {
 .container-lg,
 .container-xl {
 	width: 100%;
-	padding-right: 7.5px;
-	padding-left: 7.5px;
+	padding-right: 1px;
+	padding-left: 0.5px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -13170,11 +13170,12 @@ body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(.sidebar-m
 }
 
 .content-image{
-	background-image: url(https://www.finesec.org/es/wp-content/uploads/2022/03/portada-pagina-web.jpg);
+	background-image:url(https://img.freepik.com/vector-gratis/fondo-monocromatico-blanco-estilo-papel_52683-66443.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1708732800&semt=sph);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
 }
+
 
 .content-wrapper>.content {
 	padding: 0 0.5rem;
