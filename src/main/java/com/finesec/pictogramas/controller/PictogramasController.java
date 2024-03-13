@@ -132,7 +132,7 @@ public class PictogramasController {
 	    } else {
 	    	System.out.println(nombreIngles);
 			model.addAttribute("nombreIngles", nombreIngles);
-			return "/categoriapictogramas/vercategoriasdepictogramas";
+			return "categoriapictogramas/vercategoriasdepictogramas";
 	    }
 		
 	}
