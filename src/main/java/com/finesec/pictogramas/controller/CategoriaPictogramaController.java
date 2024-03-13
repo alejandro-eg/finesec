@@ -41,7 +41,7 @@ public class CategoriaPictogramaController {
 	    } else {
 	    	List<CategoriaPictograma> datosCategoriaPictogramasDB = servicioCategoriaPictograma.ListarCategoriaPigtograma();
 			model.addAttribute("ListaCP", datosCategoriaPictogramasDB);
-			return "/categoriapictogramas/listarcategoriapictograma";
+			return "categoriapictogramas/listarcategoriapictograma";
 	    }
 	
 	}
@@ -59,7 +59,7 @@ public class CategoriaPictogramaController {
 	    } else {
 	    	nuevaCategoriaPictograma = new CategoriaPictograma();
 			model.addAttribute("nuevo", nuevaCategoriaPictograma);
-			return "/categoriapictogramas/nuevacategoriapictograma";
+			return "categoriapictogramas/nuevacategoriapictograma";
 	    }	
 	}
 	
@@ -86,14 +86,14 @@ public class CategoriaPictogramaController {
 					model.addAttribute("alerta", "La categoria ya existe. Por favor, elige otro nombre.");
 					editMode = false;
 					model.addAttribute("editMode", editMode);
-					return "/categoriapictogramas/nuevacategoriapictograma";
+					return "categoriapictogramas/nuevacategoriapictograma";
 				}
 			} else if (keywordExistente != null) {
 				if (!editMode) {
 					model.addAttribute("alerta2", "La categoria ya existe. Por favor, elige otro keyword.");
 					editMode = false;
 					model.addAttribute("editMode", editMode);
-					return "/categoriapictogramas/nuevacategoriapictograma";
+					return "categoriapictogramas/nuevacategoriapictograma";
 				}
 
 			}
@@ -121,7 +121,7 @@ public class CategoriaPictogramaController {
 	    	CategoriaPictograma recuperadoDB = servicioCategoriaPictograma
 					.findByIdCategoriaPictograma(idCategoriaPictograma);
 			model.addAttribute("nuevo", recuperadoDB);
-			return "/categoriapictogramas/nuevacategoriapictograma";
+			return "categoriapictogramas/nuevacategoriapictograma";
 	    }		
 	}
 

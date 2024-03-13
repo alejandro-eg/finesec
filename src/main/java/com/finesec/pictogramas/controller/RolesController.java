@@ -58,7 +58,7 @@ public class RolesController {
 	        // Si restriccionRol es false, muestra la página de roles ("/roles")
 	        List<Roles> datosRolesDB = servicioRoles.ListarRoles();
 	        model.addAttribute("ListaR", datosRolesDB);
-	        return "/roles/listaroles";
+	        return "roles/listaroles";
 	    }
 	}
 	
@@ -77,7 +77,7 @@ public class RolesController {
 	        // Si restriccionRol es false, muestra la página de roles ("/roles")
 	    	nuevoRol = new Roles();
 			model.addAttribute("nuevo", nuevoRol);// método de ejecución al leer la url
-			return "/roles/nuevorol"; // ruta fisica de la pagina web
+			return "roles/nuevorol"; // ruta fisica de la pagina web
 	    }
 	}
 
@@ -93,7 +93,7 @@ public class RolesController {
 				model.addAttribute("alerta", "El rol ya existe. Por favor, elige otro nombre.");
 				editMode = false;
 				model.addAttribute("editMode", editMode);
-				return "/roles/nuevorol";
+				return "roles/nuevorol";
 			}
 
 		}
@@ -122,7 +122,7 @@ public class RolesController {
 			model.addAttribute("nuevo", recuperadoDB);
 			editMode = true;
 	        model.addAttribute("editMode", editMode);
-			return "/roles/nuevorol";
+			return "roles/nuevorol";
 	    }	
 	}
 

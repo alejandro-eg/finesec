@@ -54,7 +54,7 @@ public class UsuariosController {
 			editMode = false;
 			model.addAttribute("ListaU", datosUsuariosDB);
 			model.addAttribute("editMode", editMode); // Pasa el modo de edición al modelo
-			return "/usuario/listarusuario"; //ruta fisica de la pagina web
+			return "usuario/listarusuario"; //ruta fisica de la pagina web
 	    }
 	}
 	
@@ -97,7 +97,7 @@ public class UsuariosController {
 	 	    model.addAttribute("nuevo", nuevoUsuario);//método de ejecución al leer la url
 	 	    model.addAttribute("listaRol", listaRoles);
 	 	    model.addAttribute("listaPreguntas", listaPreguntasSeguridad);
-	 	    return "/usuario/nuevousario"; //ruta fisica de la pagina web
+	 	    return "usuario/nuevousario"; //ruta fisica de la pagina web
 	    }
 	
 	}
@@ -125,7 +125,7 @@ public class UsuariosController {
 	            model.addAttribute("alerta2", "Ya ha sido creado un usuario con esa cédula, por favor proporciona una nueva");
 	            model.addAttribute("listaRol", servicioRol.ListarRoles());
 	            model.addAttribute("listaPreguntas", servicioPreguntasSeguridad.ListarPreguntasSeguridad());
-	            return "/usuario/nuevousario";
+	            return "usuario/nuevousario";
 	        }
 
 	        // Guardar el nuevo usuario
@@ -162,7 +162,7 @@ public class UsuariosController {
 		    idUsuarioSeleccionado = idUsuario;
 	        model.addAttribute("editMode", editMode);
 		    System.out.println("Aplasto en editar: "+ editMode);
-		    return "/usuario/nuevousario";
+		    return "usuario/nuevousario";
 	    }  
 	}
 	
@@ -196,7 +196,7 @@ public class UsuariosController {
 	    } else {
 	    	List<Usuarios> usuariosEncontrados = servicioUsuarios.buscarUsuarios(nombres, rolId);
 	  	    model.addAttribute("ListaU", usuariosEncontrados);
-	  	    return "/usuario/listarusuario";
+	  	    return "usuario/listarusuario";
 	    }   
 	}
 

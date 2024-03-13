@@ -47,7 +47,7 @@ public class PictogramasController {
 	    } else {
 	    	List<Pictogramas> datosPictogramaDB= servicioPictograma.ListarPictograma();
 			model.addAttribute("ListaP", datosPictogramaDB);
-			return "/pictogramas/listarpictograma"; //ruta fisica de la pagina web
+			return "pictogramas/listarpictograma"; //ruta fisica de la pagina web
 	    }
 		
 		
@@ -68,7 +68,7 @@ public class PictogramasController {
 			List<CategoriaPictograma> listaCategoriaPictograma = servicioCategoriaPictogramas.ListarCategoriaPigtograma();
 			model.addAttribute("nuevo", nuevoPictograma);//método de ejecución al leer la url
 			model.addAttribute("listaCategoriaPictograma", listaCategoriaPictograma);
-			return "/pictogramas/nuevopictograma"; //ruta fisica de la pagina web
+			return "pictogramas/nuevopictograma"; //ruta fisica de la pagina web
 	    }
 		
 	}
@@ -95,7 +95,7 @@ public class PictogramasController {
 		    model.addAttribute("nuevo", recuperadoDB);
 		    model.addAttribute("listaCategoriaPictograma", listaCategoriaPictograma);
 		    model.addAttribute("categoriaSeleccionada", categoriaId); // Pasar el ID de la categoría seleccionada
-		    return "/pictogramas/nuevopictograma";
+		    return "pictogramas/nuevopictograma";
 	    }
 		
 	}
